@@ -52,3 +52,56 @@ float Vec4::magitude(){
 Vec4 operator*(const double& s, const Vec4& v){
     return Vec4(v.x * s, v.y * s, v.z * s, v.w * s);
 }
+
+
+float Vec3::dot(const Vec3& v){
+    return (x * v.x) + (y * v.y) + (z * v.z);
+}
+
+Vec3 Vec3::operator+(const Vec3& v) const{
+    return Vec3(x + v.x, y + v.y, z + v.z);
+}
+
+     
+Vec3 Vec3::operator+=(const Vec3& v){
+    return *this = *this + v;
+}
+
+    
+Vec3 Vec3::operator-(const Vec3& v) const{
+     return Vec3(x - v.x, y - v.y, z - v.z);
+}
+
+
+Vec3 Vec3::operator-=(const Vec3& v){
+    return *this = *this - v;
+}
+
+
+Vec3 Vec3::operator*(const double& s) const{
+    return Vec3(x * s, y * s, z * s);
+}
+
+
+Vec3 Vec3::operator*=(const double& s){
+    return *this = *this * s;
+}
+
+bool Vec3::operator==(const Vec3& v){
+    return x == v.x && y == v.y && z == v.z;
+}
+
+
+bool Vec3::operator!=(const Vec3& v){
+     return !(*this == v);
+}
+
+
+float Vec3::magitude(){
+    return sqrt((x * x) + (y * y) + (z * z));
+}
+
+
+Vec3 operator*(const double& s, const Vec3& v){
+    return Vec3(v.x * s, v.y * s, v.z * s);
+}
