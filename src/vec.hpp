@@ -51,7 +51,7 @@ class Vec4 {
         float dot(const Vec4& v);
 
         /**
-         * @brief + operator override. Add together this Vector and v component wise (x1 + x2 ... )
+         * @brief Add operator override. Add together this Vector and v component wise (x1 + x2 ... )
          * 
          * @param v Vector to add to this one
          * @return New Vector with the sum 
