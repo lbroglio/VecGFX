@@ -90,7 +90,7 @@ class Vec4 {
          * @param s Scalar to multiply the elements of this Vector by
          * @return New Vector created after scaling
          */
-        Vec4 operator*(const double& s) const;
+        Vec4 operator*(const float& s) const;
 
         /**
          * @brief *= override. Perform scalar multiplication on this Vector and 
@@ -99,7 +99,7 @@ class Vec4 {
          * @param s Scalar to multiply the elements of this Vector by
          * @return This Vector after the operation
          */
-        Vec4 operator*=(const double& s);
+        Vec4 operator*=(const float& s);
 
         /**
          * @brief == override. Compare two Vectors and return true if 

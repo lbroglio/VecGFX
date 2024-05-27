@@ -25,12 +25,12 @@ Vec4 Vec4::operator-=(const Vec4& v){
 }
 
 
-Vec4 Vec4::operator*(const double& s) const{
+Vec4 Vec4::operator*(const float& s) const{
     return Vec4(x * s, y * s, z * s, w * s);
 }
 
 
-Vec4 Vec4::operator*=(const double& s){
+Vec4 Vec4::operator*=(const float& s){
     return *this = *this * s;
 }
 
