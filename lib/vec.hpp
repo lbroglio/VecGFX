@@ -293,6 +293,7 @@ class Vec3{
      * @return The output string after the Vec3's representation is printed
      */
     friend std::ostream& operator<<(std::ostream& o, const Vec3& v);
+
 };
 
 

@@ -180,3 +180,181 @@ std::ostream& operator<<(std::ostream& o, const Mat4& m){
 
     return o;
 }
+
+Mat3::Mat3(std::initializer_list<std::initializer_list<float>> initList){
+    //Set the matrix to the provided values
+    for(int i =0; i < 9; i++){
+        // Find location of this index in the initList
+        int row = i / 3;
+        int col = i % 3;
+
+        backingArr[i] = *((initList.begin() + row)->begin() + col);
+    }
+}
+
+
+Mat3::Mat3(){
+    *this = Mat3({
+    {1.0, 0.0, 0.0},
+    {0.0, 1.0, 0.0},
+    {0.0, 0.0, 1.0},
+    {0.0, 0.0, 0.0}
+    });
+}
+
+Mat3::Mat3(const Mat3& m){
+    *this = Mat3({
+    {m.backingArr[0], m.backingArr[1], m.backingArr[2],},
+    {m.backingArr[3], m.backingArr[4], m.backingArr[5],},
+    {m.backingArr[6], m.backingArr[7], m.backingArr[8] }
+    });
+}
+
+Mat3 Mat3::operator+(const Mat3& m) const{
+    // Matrix to hold the sum
+    Mat3 ret = Mat3();
+
+    // Set all values of this matrix to the sum of the corresponding values
+    for(int i=0; i < 9; i++){
+        ret.backingArr[i] = backingArr[i] + m.backingArr[i]; 
+    }
+
+    return ret;
+}
+
+Mat3 Mat3::operator+=(const Mat3& m){
+    return (*this = *this + m);
+}
+
+Mat3 Mat3::operator-(const Mat3& m) const{
+    // Matrix to hold the difference
+    Mat3 ret = Mat3();
+
+    // Set all values of this matrix to the sum of the corresponding values
+    for(int i=0; i < 9; i++){
+        ret.backingArr[i] = backingArr[i] - m.backingArr[i]; 
+    }
+
+    return ret;
+}
+
+Mat3 Mat3::operator-=(const Mat3& m){
+    return (*this = *this - m);
+}
+
+Mat3 Mat3::operator*(const float& s) const {
+    // Matrix containing the scaled value
+    Mat3 ret = Mat3();
+
+    // Set all values of this matrix to the sum of the corresponding values
+    for(int i=0; i < 9; i++){
+        ret.backingArr[i] = backingArr[i] * s; 
+    }
+
+    return ret;
+}
+
+Mat3 Mat3::operator*=(const float& s){
+    // Matrix containing the scaled value
+    Mat3 ret = Mat3();
+
+    // Set all values of this matrix to the sum of the corresponding values
+    for(int i=0; i < 9; i++){
+        ret.backingArr[i] = backingArr[i] * s; 
+    }
+
+    return (*this = *this * ret);
+}
+
+Mat3 Mat3::operator*(const Mat3& m) const {
+    // Matrix to store the product
+    Mat3 ret = Mat3();
+
+    // Perform the matrix mutliplication
+    int prodRow = 0;
+    for(int row = 0; row < 3; row++){
+        int prodCol = 0;
+        for(int col = 0; col < 3; col++){
+            // Hold the calculated sum of the products for this row
+            float indexVal = 0;
+
+            for(int rowIndex=0; rowIndex < 3; rowIndex++){
+                for(int colIndex=0; colIndex < 3; colIndex++){
+                    indexVal += backingArr[rowIndex] + m.backingArr[colIndex];
+                }
+            }
+            prodCol++;
+        }
+        prodRow++;
+    }
+
+    return ret;
+}
+
+Mat3 Mat3::operator*=(const Mat3& m){
+    return (*this = *this * m);
+}
+
+Mat3 Mat3::transpose() const {
+    // Matrix to store the product
+    Mat3 ret = Mat3();
+
+    // Transpose the matrix
+    for(int row = 0; row < 3; row++){
+        for(int col = 0; col < 3; col++){
+            // Calculate offsets in backing arrays
+            int newOffset = (col * 3) + row;
+            int origOffset = (row * 3) + col;
+
+            ret.backingArr[newOffset] = backingArr[origOffset];
+        }
+    }
+
+    return ret;
+}
+
+Mat3 Mat3::transposeThis(){
+    return (*this = this->transpose());
+}
+
+Mat3::MRow Mat3::operator[](int idx){
+    return MRow(*this, idx);
+}
+
+float& Mat3::MRow::operator[](int idx){
+    int offset = (thisIdx * 3) + idx;
+    return parent.backingArr[offset];
+}
+
+float* Mat3::asArray(){
+    // Allocate space for array
+    float* matArray = new float[9];
+
+    // Fill array from backing array
+    for(int i=0; i < 9; i++){
+        matArray[i] = backingArr[i];
+    }
+
+    return matArray;
+}
+
+Mat3 operator*(const float& s, const Mat3& m){
+    // Matrix containing the scaled value
+    Mat3 ret = Mat3();
+
+    // Set all values of this matrix to the sum of the corresponding values
+    for(int i=0; i < 9; i++){
+        ret.backingArr[i] = m.backingArr[i] * s; 
+    }
+
+    return ret;
+}
+
+std::ostream& operator<<(std::ostream& o, const Mat3& m){
+    // Output the formatted matrix
+    o << m.backingArr[0] << ", " << m.backingArr[1] << ", " << m.backingArr[2] << ", \n "
+    << m.backingArr[3] << ", " << m.backingArr[4] << ", " << m.backingArr[5] << ", \n"
+    << m.backingArr[6] << ", " << m.backingArr[7] << ", " << m.backingArr[8] << ", \n";
+
+    return o;
+}
