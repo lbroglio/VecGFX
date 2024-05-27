@@ -1,6 +1,8 @@
 #ifndef VGFX_VECTORS
 #define VGFX_VECTORS
 
+#include<iostream>
+
 /**
  * @brief A class holding a 4D Vector 
  */
@@ -139,6 +141,15 @@ class Vec4 {
      */
     friend Vec4 operator*(const double& s, const Vec4& v);
 
+    /**
+     * @brief Create a string representation of a Vec4 and pass it into an output stream
+     * 
+     * @param o output stream to print to
+     * @param v Vec4 to print a string representation of
+     * @return The output string after the Vec4's representation is printed
+     */
+    friend std::ostream& operator<<(std::ostream& o, const Vec4& v);
+
 };
 
 /**
@@ -273,6 +284,15 @@ class Vec3{
      * @return New Vector created after scaling
      */
     friend Vec3 operator*(const double& s, const Vec3& v);
+
+    /**
+     * @brief Create a string representation of a Vec3 and pass it into an output stream
+     * 
+     * @param o output stream to print to
+     * @param v Vec3 to print a string representation of
+     * @return The output string after the Vec3's representation is printed
+     */
+    friend std::ostream& operator<<(std::ostream& o, const Vec3& v);
 };
 
 

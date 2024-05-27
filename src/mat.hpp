@@ -2,7 +2,7 @@
 #define VGFX_MATRIX
 
 #include<initializer_list>
-
+#include<iostream>
 
 /**
  * @brief Class holding a 4x4 Matrix 
@@ -140,20 +140,6 @@ class Mat4{
         Mat4 transposeThis();
 
         /**
-         * @brief Find and return the inverse of this Matrix
-         * 
-         * @return The inverse of this Matrix
-         */
-        Mat4 inverse() const;
-
-        /**
-         * @brief Find the inverse of this Matrix set it to the result and then return it.  
-         * 
-         * @return The inverse of this matrix
-         */
-        Mat4 inverseThis();
-
-        /**
          * @brief Index into this Matrix to get the contents of the row at the 
          * given index. 
          * 
@@ -162,10 +148,34 @@ class Mat4{
          */
         MRow operator[](int idx);
 
+        /**
+         * @brief Return the Mat4 as a standard array. Index for each element can be calculated with 
+         * (row * 4) + column <br>
+         * Allocates space for the array
+         * 
+         * @return Matrix as an array
+         */
+        float* asArray();
+
     private:
         float backingArr[16];
 
+    /**
+     * @brief * override. Perform scalar multiplication on this Vec3
+     * 
+     * @param s Scalar to multiply the elements of this Vector by
+     * @return New Vector created after scaling
+     */
+    friend Mat4 operator*(const float& s, const Mat4& m);
 
+    /**
+     * @brief Create a string representation of a Mat4 and pass it into an output stream
+     * 
+     * @param o output stream to print to
+     * @param v Mat4 to print a string representation of
+     * @return The output string after the Mat4's representation is printed
+     */
+    friend std::ostream& operator<<(std::ostream& o, const Mat4& m);
 
 };
 
