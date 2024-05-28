@@ -140,7 +140,7 @@ namespace VecGFX{
          * @param s Scalar to multiply the elements of this Vector by
          * @return New Vector created after scaling
          */
-        friend Vec4 operator*(const double& s, const Vec4& v);
+        friend Vec4 operator*(const float& s, const Vec4& v);
 
         /**
          * @brief Create a string representation of a Vec4 and pass it into an output stream
@@ -237,7 +237,7 @@ namespace VecGFX{
              * @param s Scalar to multiply the elements of this Vector by
              * @return New Vector created after scaling
              */
-            Vec3 operator*(const double& s) const;
+            Vec3 operator*(const float& s) const;
 
             /**
              * @brief *= override. Perform scalar multiplication on this Vector and 
@@ -246,7 +246,25 @@ namespace VecGFX{
              * @param s Scalar to multiply the elements of this Vector by
              * @return This Vector after the operation
              */
-            Vec3 operator*=(const double& s);
+            Vec3 operator*=(const float& s);
+
+            /**
+             * @brief * override. Find the cross product of this Vec3 with another.
+             * Ordered as this * m
+             * 
+             * @param v The Vec3 to cross with this one.
+             * @return New Vec3 created by the cross product
+             */
+            Vec3 operator*(const Vec3& v) const;
+
+            /**
+             * @brief *= override. Find the cross product of this Vec3 with another.
+             * Ordered as this * m. Then set this Vec3 to the result.
+             * 
+             * @param v The Vec3 to cross with this one.
+             * @return This Vector after the operation
+             */
+            Vec3 operator*=(const Vec3& v);
 
             /**
              * @brief == override. Compare two Vectors and return true if 
@@ -284,7 +302,7 @@ namespace VecGFX{
          * @param s Scalar to multiply the elements of this Vector by
          * @return New Vector created after scaling
          */
-        friend Vec3 operator*(const double& s, const Vec3& v);
+        friend Vec3 operator*(const float& s, const Vec3& v);
 
         /**
          * @brief Create a string representation of a Vec3 and pass it into an output stream

@@ -86,14 +86,27 @@ namespace VecGFX{
     }
 
 
-    Vec3 Vec3::operator*(const double& s) const{
+    Vec3 Vec3::operator*(const float& s) const{
         return Vec3(x * s, y * s, z * s);
     }
 
 
-    Vec3 Vec3::operator*=(const double& s){
+    Vec3 Vec3::operator*=(const float& s){
         return *this = *this * s;
     }
+
+    Vec3 Vec3::operator*(const Vec3& v) const{
+        float crossX = (this->y * v.z) - (this->z * v.y);
+        float crossY = (this->z * v.x) - (this->x * v.z);
+        float crossZ = (this->x * v.y) - (this->y * v.x);
+
+        return Vec3(crossX, crossY, crossZ);
+    }
+
+    Vec3 Vec3::operator*=(const float& v){
+        return (*this = *this * v);
+    }
+
 
     bool Vec3::operator==(const Vec3& v){
         return x == v.x && y == v.y && z == v.z;
