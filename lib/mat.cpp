@@ -147,6 +147,15 @@ namespace VecGFX{
         return parent.backingArr[offset];
     }
 
+    Mat4::CMRow const& Mat4::operator[](int idx) const{
+        return CMRow(*this, idx);
+    }
+
+    float const& Mat4::CMRow::operator[](int idx) const {
+        int offset = (thisIdx * 4) + idx;
+        return parent.backingArr[offset];
+    }
+
     float* Mat4::asArray(){
         // Allocate space for array
         float* matArray = new float[16];
@@ -322,6 +331,20 @@ namespace VecGFX{
     }
 
     float& Mat3::MRow::operator[](int idx){
+        int offset = (thisIdx * 3) + idx;
+        return parent.backingArr[offset];
+    }
+
+    float& Mat3::MRow::operator[](int idx){
+        int offset = (thisIdx * 3) + idx;
+        return parent.backingArr[offset];
+    }
+    
+    Mat3::CMRow const& Mat3::operator[](int idx) const{
+        return CMRow(*this, idx);
+    }
+
+    float const& Mat3::CMRow::operator[](int idx) const{
         int offset = (thisIdx * 3) + idx;
         return parent.backingArr[offset];
     }

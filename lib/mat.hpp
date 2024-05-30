@@ -5,6 +5,7 @@
 #include<iostream>
 
 namespace VecGFX{
+    
     /**
      * @brief Class holding a 4x4 Matrix 
      */
@@ -24,6 +25,15 @@ namespace VecGFX{
                      * @return The retrieved value
                      */
                     float& operator[](int idx);
+
+                    /**
+                     * @brief Index into this row to get the value at the column with 
+                     * the given index
+                     * 
+                     * @param idx The column index to get the value of 
+                     * @return The retrieved value
+                     */
+                    float const& operator[](int idx) const;
                 private:
                     Mat4& parent;
                     int thisIdx;
@@ -36,6 +46,43 @@ namespace VecGFX{
                      * @param idx The index of the Row this class corresponds to
                      */
                     MRow(Mat4& parent, int idx): parent(parent), thisIdx(idx) {}
+            };
+
+            /**
+             * @brief A class holding a row from a const Mat4 class
+             */
+            class CMRow{
+                friend class Mat4;
+                public:
+                    /**
+                     * @brief Index into this row to get the value at the column with 
+                     * the given index
+                     * 
+                     * @param idx The column index to get the value of 
+                     * @return The retrieved value
+                     */
+                    float& operator[](int idx);
+
+                    /**
+                     * @brief Index into this row to get the value at the column with 
+                     * the given index
+                     * 
+                     * @param idx The column index to get the value of 
+                     * @return The retrieved value
+                     */
+                    float const& operator[](int idx) const;
+                private:
+                    const Mat4& parent;
+                    int thisIdx;
+
+                    /**
+                     * @brief Construct a new MRow object correspondng to the given 
+                     * row at the given index within the given Mat4. 
+                     * 
+                     * @param parent The Mat4 this MRow is a component of
+                     * @param idx The index of the Row this class corresponds to
+                     */
+                    CMRow(const Mat4& parent, int idx): parent(parent), thisIdx(idx) {}
             };
 
             /**
@@ -150,6 +197,15 @@ namespace VecGFX{
             MRow operator[](int idx);
 
             /**
+             * @brief Index into this Matrix to get the contents of the row at the 
+             * given index. 
+             * 
+             * @param idx The row of the matrix to retrieve the contents of
+             * @return MRow holding the corresponding row   
+             */
+            CMRow const& operator[](int idx) const;
+
+            /**
              * @brief Return the Mat4 as a standard array. Index for each element can be calculated with 
              * (row * 4) + column <br>
              * Allocates space for the array
@@ -199,6 +255,15 @@ namespace VecGFX{
                      * @return The retrieved value
                      */
                     float& operator[](int idx);
+
+                    /**
+                     * @brief Index into this row to get the value at the column with 
+                     * the given index
+                     * 
+                     * @param idx The column index to get the value of 
+                     * @return The retrieved value
+                     */
+                    float const& operator[](int index) const;
                 private:
                     Mat3& parent;
                     int thisIdx;
@@ -211,6 +276,43 @@ namespace VecGFX{
                      * @param idx The index of the Row this class corresponds to
                      */
                     MRow(Mat3& parent, int idx): parent(parent), thisIdx(idx) {}
+            };
+
+            /**
+             * @brief A class holding a row from a const Mat3 class
+             */
+            class CMRow{
+                friend class Mat3;
+                public:
+                    /**
+                     * @brief Index into this row to get the value at the column with 
+                     * the given index
+                     * 
+                     * @param idx The column index to get the value of 
+                     * @return The retrieved value
+                     */
+                    float& operator[](int idx);
+
+                    /**
+                     * @brief Index into this row to get the value at the column with 
+                     * the given index
+                     * 
+                     * @param idx The column index to get the value of 
+                     * @return The retrieved value
+                     */
+                    float const& operator[](int idx) const;
+                private:
+                    const Mat3& parent;
+                    int thisIdx;
+
+                    /**
+                     * @brief Construct a new MRow object correspondng to the given 
+                     * row at the given index within the given Mat4. 
+                     * 
+                     * @param parent The Mat4 this MRow is a component of
+                     * @param idx The index of the Row this class corresponds to
+                     */
+                    CMRow(const Mat3& parent, int idx): parent(parent), thisIdx(idx) {}
             };
 
             /**
@@ -325,6 +427,15 @@ namespace VecGFX{
             MRow operator[](int idx);
 
             /**
+             * @brief Index into this Matrix to get the contents of the row at the 
+             * given index. 
+             * 
+             * @param idx The row of the matrix to retrieve the contents of
+             * @return MRow holding the corresponding row   
+             */
+            CMRow const& operator[](int idx) const;
+
+            /**
              * @brief Return the Mat3 as a standard array. Index for each element can be calculated with 
              * (row * 3) + column <br>
              * Allocates space for the array
@@ -334,7 +445,7 @@ namespace VecGFX{
             float* asArray();
 
         private:
-            float backingArr[16];
+            float backingArr[9];
 
         /**
          * @brief * override. Perform scalar multiplication on this Vec3

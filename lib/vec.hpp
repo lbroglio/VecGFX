@@ -2,6 +2,7 @@
 #define VGFX_VECTORS
 
 #include<iostream>
+#include"mat.hpp"
 
 namespace VecGFX{
     /**
@@ -12,22 +13,22 @@ namespace VecGFX{
             /**
              * @brief x component of this Vector 
              */
-            float x;
+            float& x = backingArr[0];
 
             /**
              * @brief y component of this Vector
              */
-            float y; 
+            float& y = backingArr[1]; 
 
             /**
              * @brief z component of this Vector
              */
-            float z;
+            float& z = backingArr[2]; 
 
             /**
              * @brief w component of this Vector
              */
-            float w;
+            float& w = backingArr[3]; 
 
             /**
              * @brief Construct a new Vec4 object with a given x, y, z, and w components
@@ -37,13 +38,20 @@ namespace VecGFX{
              * @param z z component of the Vec4 to create
              * @param w w component of the Vec4 to create
              */
-            Vec4(float x, float y, float z, float w): x(x), y(y), z(z), w(w) {}
+            Vec4(float x, float y, float z, float w): backingArr({x, y, z, w}) {}
 
             /**
              * @brief Construct a new Vec4 object -- Default constructor; sets all components to zero
              * 
              */
-            Vec4(): x(0), y(0), z(0), w(0){}
+            Vec4(): backingArr({0.0, 0.0, 0.0, 0.0}){}
+
+            /**
+             * @brief Copy Constructor. Create a new Vec4 from another
+             * 
+             * @param f Vec4 to initialize this one from
+             */
+            Vec4(const Vec4& f): backingArr({f.backingArr[0], f.backingArr[1], f.backingArr[2], f.backingArr[3]}){}
 
             /**
              * @brief Calculate the dot product of this Vector with another 
@@ -128,11 +136,33 @@ namespace VecGFX{
             bool operator!=(const Vec4& v);
 
             /**
+             * @brief = Override. Set the elements of this Vec4 equal to another.
+             * 
+             * @param v Vec4 to set the elements of this one too
+             * @return This Vec4 after its values are set
+             */
+            Vec4 operator=(const Vec4& v);
+
+            /**
              * @brief Calculate and return the magnitude of this Vector
              * 
              * @return Magnitude of this Vector 
              */
             float magitude();
+
+            /**
+             * @brief Transform this Vec4 by multiplying it by a Mat4.
+             * Equivalent to setting this Vec4 equal to m * *this.
+             * 
+             * @param m Matrix to transform this Vec4 with
+             * @return This Vec4 after the operation
+             */
+            Vec4 transform(const Mat4& m);
+        private:
+            /**
+             * @brief Array which stores the values of this Vec3
+             */
+            float backingArr[4];
 
         /**
          * @brief * override. Perform scalar multiplication on this Vec4
@@ -141,6 +171,15 @@ namespace VecGFX{
          * @return New Vector created after scaling
          */
         friend Vec4 operator*(const float& s, const Vec4& v);
+
+        /**
+         * @brief * Ovveride. Mutliply a Vec4 by a given Mat4
+         * 
+         * @param m Mat4 to multiply the Vec4 by.
+         * @param v Vec4 to multiply with the Mat4
+         * @return Product of the Mat4 and the Vec4
+         */
+        friend Vec4 operator*(const Mat4& m, const Vec4& v);
 
         /**
          * @brief Create a string representation of a Vec4 and pass it into an output stream
@@ -160,19 +199,19 @@ namespace VecGFX{
     class Vec3{
         public:
             /**
-            * @brief x component of this Vector 
-            */
-            float x;
+             * @brief x component of this Vector 
+             */
+            float& x = backingArr[0];
 
             /**
-            * @brief y component of this Vector
-            */
-            float y; 
+             * @brief y component of this Vector
+             */
+            float& y = backingArr[1]; 
 
             /**
-            * @brief z component of this Vector
-            */
-            float z;
+             * @brief z component of this Vector
+             */
+            float& z = backingArr[2]; 
 
             /**
              * @brief Construct a new Vec3 object with a given x, y, and zcomponents
@@ -181,13 +220,20 @@ namespace VecGFX{
              * @param y y component of the Vec3 to create
              * @param z z component of the Vec3 to create
              */
-            Vec3(float x, float y, float z): x(x), y(y), z(z){}
+            Vec3(float x, float y, float z): backingArr({x, y, z}){}
 
             /**
              * @brief Construct a new Vec4 object -- Default constructor; sets all components to zero
              * 
              */
-            Vec3(): x(0), y(0), z(0){}
+            Vec3(): backingArr({0.0, 0.0, 0.0}){}
+
+            /**
+             * @brief Copy Constructor. Create a new Vec3 from another
+             * 
+             * @param f Vec3 to initialize this one from
+             */
+            Vec3(const Vec3& f): backingArr({f.backingArr[0], f.backingArr[1], f.backingArr[2]}){}
 
             /**
              * @brief Calculate the dot product of this Vector with another 
@@ -290,11 +336,33 @@ namespace VecGFX{
             bool operator!=(const Vec3& v);
 
             /**
+             * @brief = Override. Set the elements of this Vec3 equal to another.
+             * 
+             * @param v Vec3to set the elements of this one too
+             * @return This Vec3 after its values are set
+             */
+            Vec3 operator=(const Vec3& v);
+
+            /**
              * @brief Calculate and return the magnitude of this Vector
              * 
              * @return Magnitude of this Vector 
              */
             float magitude();
+
+            /**
+             * @brief Transform this Vec4 by multiplying it by a Mat4.
+             * Equivalent to setting this Vec4 equal to m * *this.
+             * 
+             * @param m Matrix to transform this Vec4 with
+             * @return This Vec4 after the operation
+             */
+            Vec3 transform(const Mat3& m);
+        private:
+            /**
+             * @brief Array which stores the values of this Vec3
+             */
+            float backingArr[3];
 
         /**
          * @brief * override. Perform scalar multiplication on this Vec3
@@ -303,6 +371,16 @@ namespace VecGFX{
          * @return New Vector created after scaling
          */
         friend Vec3 operator*(const float& s, const Vec3& v);
+
+        /**
+         * @brief * Ovveride. Mutliply a Vec3 by a given Mat3
+         * 
+         * @param m Mat3 to multiply the Vec3 by.
+         * @param v Vec3 to multiply with the Mat3
+         * @return Product of the Mat3 and the Vec3
+         */
+        friend Vec3 operator*(const Mat3& m, const Vec3& v);
+
 
         /**
          * @brief Create a string representation of a Vec3 and pass it into an output stream
