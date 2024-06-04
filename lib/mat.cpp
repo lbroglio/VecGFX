@@ -147,7 +147,7 @@ namespace VecGFX{
         return parent.backingArr[offset];
     }
 
-    Mat4::CMRow const& Mat4::operator[](int idx) const{
+    Mat4::CMRow const Mat4::operator[](int idx) const{
         return CMRow(*this, idx);
     }
 
@@ -334,13 +334,8 @@ namespace VecGFX{
         int offset = (thisIdx * 3) + idx;
         return parent.backingArr[offset];
     }
-
-    float& Mat3::MRow::operator[](int idx){
-        int offset = (thisIdx * 3) + idx;
-        return parent.backingArr[offset];
-    }
     
-    Mat3::CMRow const& Mat3::operator[](int idx) const{
+    Mat3::CMRow const Mat3::operator[](int idx) const{
         return CMRow(*this, idx);
     }
 

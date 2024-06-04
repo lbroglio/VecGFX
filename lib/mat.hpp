@@ -203,7 +203,7 @@ namespace VecGFX{
              * @param idx The row of the matrix to retrieve the contents of
              * @return MRow holding the corresponding row   
              */
-            CMRow const& operator[](int idx) const;
+            CMRow const operator[](int idx) const;
 
             /**
              * @brief Return the Mat4 as a standard array. Index for each element can be calculated with 
@@ -433,7 +433,7 @@ namespace VecGFX{
              * @param idx The row of the matrix to retrieve the contents of
              * @return MRow holding the corresponding row   
              */
-            CMRow const& operator[](int idx) const;
+            CMRow const operator[](int idx) const;
 
             /**
              * @brief Return the Mat3 as a standard array. Index for each element can be calculated with 

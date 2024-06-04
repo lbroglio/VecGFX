@@ -1,5 +1,9 @@
 #include"vec.hpp"
+#include "util.hpp"
 #include<cmath>
+
+
+
 
 namespace VecGFX{
 
@@ -36,8 +40,9 @@ namespace VecGFX{
         return *this = *this * s;
     }
 
-    bool Vec4::operator==(const Vec4& v){
-        return x == v.x && y == v.y && z == v.z && w == v.w;
+    bool Vec4::operator==(const Vec4& v) const{
+        return compareWithEpsilon(x, v.x) && compareWithEpsilon(y, v.y) 
+            && compareWithEpsilon(z , v.z) && compareWithEpsilon(w, v.w);
     }
 
 
@@ -65,7 +70,7 @@ namespace VecGFX{
     }
 
 
-    Vec4 operator*(const double& s, const Vec4& v){
+    Vec4 operator*(const float& s, const Vec4& v){
         return Vec4(v.x * s, v.y * s, v.z * s, v.w * s);
     }
 
@@ -82,6 +87,8 @@ namespace VecGFX{
             }
             ret.backingArr[row] = indexVal;
         }
+
+        return ret;
     }
 
 
@@ -133,13 +140,14 @@ namespace VecGFX{
         return Vec3(crossX, crossY, crossZ);
     }
 
-    Vec3 Vec3::operator*=(const float& v){
+    Vec3 Vec3::operator*=(const Vec3& v){
         return (*this = *this * v);
     }
 
 
-    bool Vec3::operator==(const Vec3& v){
-        return x == v.x && y == v.y && z == v.z;
+    bool Vec3::operator==(const Vec3& v) const{
+        return compareWithEpsilon(x, v.x) && compareWithEpsilon(y, v.y) 
+            && compareWithEpsilon(z , v.z);
     }
 
 
@@ -182,6 +190,8 @@ namespace VecGFX{
             }
             ret.backingArr[row] = indexVal;
         }
+
+        return ret;
     }
 
     std::ostream& operator<<(std::ostream& o, const Vec3& v){

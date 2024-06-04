@@ -1,8 +1,8 @@
 #ifndef VGFX_VECTORS
 #define VGFX_VECTORS
 
-#include<iostream>
-#include"mat.hpp"
+#include <iostream>
+#include "mat.hpp"
 
 namespace VecGFX{
     /**
@@ -38,20 +38,20 @@ namespace VecGFX{
              * @param z z component of the Vec4 to create
              * @param w w component of the Vec4 to create
              */
-            Vec4(float x, float y, float z, float w): backingArr({x, y, z, w}) {}
+            Vec4(float x, float y, float z, float w): backingArr{x, y, z, w} {}
 
             /**
              * @brief Construct a new Vec4 object -- Default constructor; sets all components to zero
              * 
              */
-            Vec4(): backingArr({0.0, 0.0, 0.0, 0.0}){}
+            Vec4(): backingArr{0.0, 0.0, 0.0, 0.0}{}
 
             /**
              * @brief Copy Constructor. Create a new Vec4 from another
              * 
              * @param f Vec4 to initialize this one from
              */
-            Vec4(const Vec4& f): backingArr({f.backingArr[0], f.backingArr[1], f.backingArr[2], f.backingArr[3]}){}
+            Vec4(const Vec4& f): backingArr{f.backingArr[0], f.backingArr[1], f.backingArr[2], f.backingArr[3]}{}
 
             /**
              * @brief Calculate the dot product of this Vector with another 
@@ -122,7 +122,7 @@ namespace VecGFX{
              * true: The two Vectors are equal
              * false: The two Vectors are not equal
              */
-            bool operator==(const Vec4& v);
+            bool operator==(const Vec4& v) const;
 
             /**
              * @brief != override. Compare two Vectors and return true if they aren't equal.
@@ -220,20 +220,20 @@ namespace VecGFX{
              * @param y y component of the Vec3 to create
              * @param z z component of the Vec3 to create
              */
-            Vec3(float x, float y, float z): backingArr({x, y, z}){}
+            Vec3(float x, float y, float z): backingArr{x, y, z}{}
 
             /**
              * @brief Construct a new Vec4 object -- Default constructor; sets all components to zero
              * 
              */
-            Vec3(): backingArr({0.0, 0.0, 0.0}){}
+            Vec3(): backingArr{0.0, 0.0, 0.0}{}
 
             /**
              * @brief Copy Constructor. Create a new Vec3 from another
              * 
              * @param f Vec3 to initialize this one from
              */
-            Vec3(const Vec3& f): backingArr({f.backingArr[0], f.backingArr[1], f.backingArr[2]}){}
+            Vec3(const Vec3& f): backingArr{f.backingArr[0], f.backingArr[1], f.backingArr[2]}{}
 
             /**
              * @brief Calculate the dot product of this Vector with another 
@@ -322,7 +322,7 @@ namespace VecGFX{
              * true: The two Vectors are equal
              * false: The two Vectors are not equal
              */
-            bool operator==(const Vec3& v);
+            bool operator==(const Vec3& v) const;
 
             /**
              * @brief != override. Compare two Vectors and return true if they aren't equal.
