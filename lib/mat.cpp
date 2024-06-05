@@ -1,4 +1,7 @@
+#include<cmath>
+
 #include"mat.hpp"
+#include "util.hpp"
 
 namespace VecGFX{
     Mat4::Mat4(std::initializer_list<std::initializer_list<float>> initList){
@@ -76,15 +79,7 @@ namespace VecGFX{
     }
 
     Mat4 Mat4::operator*=(const float& s){
-        // Matrix containing the scaled value
-        Mat4 ret = Mat4();
-
-        // Set all values of this matrix to the sum of the corresponding values
-        for(int i=0; i < 16; i++){
-            ret.backingArr[i] = backingArr[i] * s; 
-        }
-
-        return (*this = *this * ret);
+        return (*this = *this * s);
     }
 
     Mat4 Mat4::operator*(const Mat4& m) const {
@@ -99,11 +94,16 @@ namespace VecGFX{
                 // Hold the calculated sum of the products for this row
                 float indexVal = 0;
 
-                for(int rowIndex=0; rowIndex < 4; rowIndex++){
-                    for(int colIndex=0; colIndex < 4; colIndex++){
-                        indexVal += backingArr[rowIndex] + m.backingArr[colIndex];
-                    }
+                for(int idx=0; idx < 4; idx++){
+                    int thisInd = (row * 4) + idx;
+                    int othInd = (idx * 4) + col;
+
+                    indexVal += backingArr[thisInd] * m.backingArr[othInd];
                 }
+                // Calculate value for indexing into backing array
+                int backingIndex = (row * 4) + col;
+                ret.backingArr[backingIndex] = indexVal;
+
                 prodCol++;
             }
             prodRow++;
@@ -120,7 +120,7 @@ namespace VecGFX{
 
         // Compare this Matrix to m component wise.
         for(int i =0; i < 16; i++){
-            if(this->backingArr[i] != m.backingArr[i]){
+            if(!compareWithEpsilon(backingArr[i], m.backingArr[i])){
                 return false;
             }
         }
@@ -180,6 +180,70 @@ namespace VecGFX{
         }
 
         return matArray;
+    }
+
+    Mat4 Mat4::rotationX(float theta){
+        // Convert theta to radians
+        theta = theta * (M_PI / 180.0);
+
+        Mat4 rotMat({
+            {1, 0, 0, 0},
+            {0, cosf(theta), -1 * sinf(theta), 0},
+            {0, sinf(theta), cosf(theta), 0},
+            {0, 0, 0, 1}
+        });
+
+        return rotMat;
+    }
+
+    Mat4 Mat4::rotationY(float theta){
+        // Convert theta to radians
+        theta = theta * (M_PI / 180.0);
+
+        Mat4 rotMat({
+            {cosf(theta), 0, sinf(theta), 0},
+            {0, 1, 0, 0},
+            {-1 * sinf(theta), 0, cosf(theta), 0},
+            {0, 0, 0, 1}
+        });
+
+        return rotMat;
+    }
+
+    Mat4 Mat4::rotationZ(float theta){
+        // Convert theta to radians
+        theta = theta * (M_PI / 180.0);
+
+        Mat4 rotMat({
+            {cosf(theta), -1 * sinf(theta), 0, 0},
+            {sinf(theta), cosf(theta), 0, 0},
+            {0, 0, 1, 0},
+            {0, 0, 0, 1}
+        });
+
+        return rotMat;
+    }
+
+    Mat4 Mat4::translation(float xShift, float yShift, float zShift){
+        Mat4 shiftMat({
+            {1, 0, 0, xShift},
+            {0, 1, 0, yShift},
+            {0, 0, 1, zShift},
+            {0, 0, 0, 1}
+        });
+
+        return shiftMat;
+    }
+
+    Mat4 Mat4::scale(float xFactor, float yFactor, float zFactor){
+        Mat4 scaleMat({
+            {xFactor, 0, 0, 0},
+            {0, yFactor, 0, 0},
+            {0, 0, zFactor, 0},
+            {0, 0, 0, 1}
+        });
+
+        return scaleMat;
     }
 
     Mat4 operator*(const float& s, const Mat4& m){
@@ -278,15 +342,7 @@ namespace VecGFX{
     }
 
     Mat3 Mat3::operator*=(const float& s){
-        // Matrix containing the scaled value
-        Mat3 ret = Mat3();
-
-        // Set all values of this matrix to the sum of the corresponding values
-        for(int i=0; i < 9; i++){
-            ret.backingArr[i] = backingArr[i] * s; 
-        }
-
-        return (*this = *this * ret);
+        return (*this = *this * s);
     }
 
     Mat3 Mat3::operator*(const Mat3& m) const {
@@ -301,11 +357,16 @@ namespace VecGFX{
                 // Hold the calculated sum of the products for this row
                 float indexVal = 0;
 
-                for(int rowIndex=0; rowIndex < 3; rowIndex++){
-                    for(int colIndex=0; colIndex < 3; colIndex++){
-                        indexVal += backingArr[rowIndex] + m.backingArr[colIndex];
-                    }
+                for(int idx=0; idx < 3; idx++){
+                    int thisInd = (row * 3) + idx;
+                    int othInd = (idx * 3) + col;
+
+                    indexVal += backingArr[thisInd] * m.backingArr[othInd];
                 }
+                // Calculate value for indexing into backing array
+                int backingIndex = (row * 3) + col;
+                ret.backingArr[backingIndex] = indexVal;
+
                 prodCol++;
             }
             prodRow++;
@@ -323,7 +384,7 @@ namespace VecGFX{
 
         // Compare this Matrix to m component wise.
         for(int i =0; i < 9; i++){
-            if(this->backingArr[i] != m.backingArr[i]){
+            if(!compareWithEpsilon(backingArr[i], m.backingArr[i])){
                 return false;
             }
         }

@@ -677,11 +677,15 @@ class VecGFXTests : public CppUnit::TestCase{
             CPPUNIT_ASSERT_EQUAL(EXPECT, v);
         }
         
+        // MAT4 TESTS
+
         /**
          * @brief Test that the + operator works for Mat4 type matrices
          * 
          */
         void testAddMat4(){
+            std::cout << "testAddMat4:\n";
+
             // Matrix to compare against
             Mat4 EXPECT({
                 {5, 5, 5, 5},
@@ -700,10 +704,944 @@ class VecGFXTests : public CppUnit::TestCase{
 
             Mat4 m2({
                 {3, 2, 2, 3},
-                {4.5, 0, 2.6, 0},
-                {4.5, 0, 0, 1},
+                {3.5, 0, 2.6, 0},
+                {3.5, 0, 0, 1},
+                {3, 2, 2, 3},
+            });
+
+            Mat4 sumMat = m1 + m2;
+
+            // Assert that the result is as expected
+            std::cout << "Expected: \n" << EXPECT << "Actual: \n" << sumMat << "\n";
+            CPPUNIT_ASSERT_EQUAL(EXPECT, sumMat);
+        }
+
+        /**
+         * @brief Test that the += operator works for Mat4 type matrices
+         * 
+         */
+        void testAddEqualsMat4(){
+            std::cout << "testAddEqualsMat4:\n";
+
+            // Matrix to compare against
+            Mat4 EXPECT({
+                {5, 5, 5, 5},
+                {5, 5, 5, 5},
+                {5, 5, 5, 5},
+                {5, 5, 5, 5},
+            });
+
+            // Matrices to add together
+            Mat4 m1({
+                {2, 3, 3, 2},
+                {1.5, 5, 2.4, 5},
+                {1.5, 5, 5, 4},
                 {2, 3, 3, 2},
             });
+
+            Mat4 m2({
+                {3, 2, 2, 3},
+                {3.5, 0, 2.6, 0},
+                {3.5, 0, 0, 1},
+                {3, 2, 2, 3},
+            });
+
+           m1 += m2;
+
+            // Assert that the result is as expected
+            std::cout << "Expected: \n" << EXPECT << "Actual: \n" << m1 << "\n";
+            CPPUNIT_ASSERT_EQUAL(EXPECT, m1);
+        }
+
+        /**
+         * @brief Test that the - operator works for Mat4 type matrices
+         * 
+         */
+        void testMinusMat4(){
+            std::cout << "testMinusMat4:\n";
+
+            // Matrix to compare against
+            Mat4 EXPECT({
+                {-1, -1, -1, -1},
+                {-1, -1, -1, -1},
+                {-1, -1, -1, -1},
+                {-1, -1, -1, -1},
+            });
+
+            // Matrices to add together
+            Mat4 m1({
+                {2, 3, 3, 2},
+                {1.5, 5, 2.4, 5},
+                {1.5, 5, 5, 4},
+                {2, 3, 3, 2},
+            });
+
+            Mat4 m2({
+                {3, 4, 4, 3},
+                {2.5, 6, 3.4, 6},
+                {2.5, 6, 6, 5},
+                {3, 4, 4, 3},
+            });
+
+            Mat4 diffMat = m1 - m2;
+
+            // Assert that the result is as expected
+            std::cout << "Expected: \n" << EXPECT << "Actual: \n" << diffMat << "\n";
+            CPPUNIT_ASSERT_EQUAL(EXPECT, diffMat);
+        }
+        
+
+        /**
+         * @brief Test that the -= operator works for Mat4 type matrices
+         * 
+         */
+        void testMinusEqualsMat4(){
+            std::cout << "testMinusEqualsMat4:\n";
+
+            // Matrix to compare against
+            Mat4 EXPECT({
+                {-1, -1, -1, -1},
+                {-1, -1, -1, -1},
+                {-1, -1, -1, -1},
+                {-1, -1, -1, -1},
+            });
+
+            // Matrices to add together
+            Mat4 m1({
+                {2, 3, 3, 2},
+                {1.5, 5, 2.4, 5},
+                {1.5, 5, 5, 4},
+                {2, 3, 3, 2},
+            });
+
+            Mat4 m2({
+                {3, 4, 4, 3},
+                {2.5, 6, 3.4, 6},
+                {2.5, 6, 6, 5},
+                {3, 4, 4, 3},
+            });
+
+            m1 -= m2;
+
+            // Assert that the result is as expected
+            std::cout << "Expected: \n" << EXPECT << "Actual: \n" << m1 << "\n";
+            CPPUNIT_ASSERT_EQUAL(EXPECT, m1);
+        }
+
+        /**
+         * @brief Test that the *= operator works for a Mat4 and a float
+         * 
+         */
+        void testScaleEqualsMat4(){
+            std::cout << "testScaleEqualsMat4:\n";
+
+            // Matrix to compare against
+            Mat4 EXPECT({
+                {10, 10, 10, 3},
+                {3, 10, 10, 10},
+                {4, 4, 4, 4},
+                {4, 4, 4, 4},
+            });
+
+            // Matrices to add together
+            Mat4 m({
+                {5, 5, 5, 1.5},
+                {1.5, 5, 5, 5},
+                {2, 2, 2, 2},
+                {2, 2, 2, 2},
+            });
+
+            m *= 2;
+
+            // Assert that the result is as expected
+            std::cout << "Expected: \n" << EXPECT << "Actual: \n" << m << "\n";
+            CPPUNIT_ASSERT_EQUAL(EXPECT, m);
+        }
+
+        /**
+         * @brief Test that the * operator works for a Mat4 and a float
+         * 
+         */
+        void testScaleMat4(){
+            std::cout << "testScaleMat4:\n";
+
+            // Matrix to compare against
+            Mat4 EXPECT({
+                {10, 10, 10, 3},
+                {3, 10, 10, 10},
+                {4, 4, 4, 4},
+                {4, 4, 4, 4},
+            });
+
+            // Matrices to add together
+            Mat4 m({
+                {5, 5, 5, 1.5},
+                {1.5, 5, 5, 5},
+                {2, 2, 2, 2},
+                {2, 2, 2, 2},
+            });
+
+            Mat4 prod = 2 * m;
+
+            // Assert that the result is as expected
+            std::cout << "Expected: \n" << EXPECT << "Actual: \n" << prod << "\n";
+            CPPUNIT_ASSERT_EQUAL(EXPECT, prod);
+        }
+
+        /**
+         * @brief Test that the * operator works for Mat4 type matrices
+         * 
+         */
+        void testMultMat4(){
+            std::cout << "testMultMat4:\n";
+
+            // Matrix to compare against
+            Mat4 EXPECT({
+                {57, 69.5, 69.5, 57},
+                {50, 62.5, 62.5, 58.75},
+                {27, 32, 32, 27},
+                {27, 32, 32, 27},
+            });
+
+            // Matrices to add together
+            Mat4 m1({
+                {5, 5, 5, 1.5},
+                {1.5, 5, 5, 5},
+                {2, 2, 2, 2},
+                {2, 2, 2, 2},
+            });
+
+            Mat4 m2({
+                {5, 5, 5, 2.5},
+                {2.5, 5, 5, 5},
+                {3, 3, 3, 3},
+                {3, 3, 3, 3},
+            });
+
+            Mat4 prod = m1 * m2;
+
+            // Assert that the result is as expected
+            std::cout << "Expected: \n" << EXPECT << "Actual: \n" << prod << "\n";
+            CPPUNIT_ASSERT_EQUAL(EXPECT, prod);
+        }
+
+        /**
+         * @brief Test that the *= operator works for Mat4 type matrices
+         * 
+         */
+        void testMultEqualsMat4(){
+            std::cout << "testMultEqualsMat4:\n";
+
+            // Matrix to compare against
+            Mat4 EXPECT({
+                {57, 69.5, 69.5, 57},
+                {50, 62.5, 62.5, 58.75},
+                {27, 32, 32, 27},
+                {27, 32, 32, 27},
+            });
+
+            // Matrices to add together
+            Mat4 m1({
+                {5, 5, 5, 1.5},
+                {1.5, 5, 5, 5},
+                {2, 2, 2, 2},
+                {2, 2, 2, 2},
+            });
+
+            Mat4 m2({
+                {5, 5, 5, 2.5},
+                {2.5, 5, 5, 5},
+                {3, 3, 3, 3},
+                {3, 3, 3, 3},
+            });
+
+            m1 *= m2;
+
+            // Assert that the result is as expected
+            std::cout << "Expected: \n" << EXPECT << "Actual: \n" << m1 << "\n";
+            CPPUNIT_ASSERT_EQUAL(EXPECT, m1);
+        }
+
+        /**
+         * @brief Test that the transpose method works for Mat4 type matrices
+         * 
+         */
+        void testTransposeMat4(){
+            std::cout << "testTransposeMat4:\n";
+
+            // Matrix to compare against
+            Mat4 EXPECT({
+                {2, 5, 1, 3},
+                {3, 6, 1, 3},
+                {3, 6, 1, 3},
+                {1.5, 2.5, 3.5, 4.5},
+            });
+
+            // Matrices to add together
+            Mat4 m({
+                {2, 3, 3, 1.5},
+                {5, 6, 6, 2.5},
+                {1, 1, 1, 3.5},
+                {3, 3, 3, 4.5},
+            });
+
+            Mat4 res = m.transpose();
+
+            // Assert that the result is as expected
+            std::cout << "Expected: \n" << EXPECT << "Actual: \n" << res << "\n";
+            CPPUNIT_ASSERT_EQUAL(EXPECT, res);
+        }
+
+        /**
+         * @brief Test that the transposeThis method works for Mat4 type matrices
+         * 
+         */
+        void testTransposeThisMat4(){
+            std::cout << "testTransposeThisMat4:\n";
+
+            // Matrix to compare against
+            Mat4 EXPECT({
+                {2, 5, 1, 3},
+                {3, 6, 1, 3},
+                {3, 6, 1, 3},
+                {1.5, 2.5, 3.5, 4.5},
+            });
+
+            // Matrices to add together
+            Mat4 m({
+                {2, 3, 3, 1.5},
+                {5, 6, 6, 2.5},
+                {1, 1, 1, 3.5},
+                {3, 3, 3, 4.5},
+            });
+
+            m.transposeThis();
+
+            // Assert that the result is as expected
+            std::cout << "Expected: \n" << EXPECT << "Actual: \n" << m << "\n";
+            CPPUNIT_ASSERT_EQUAL(EXPECT, m);
+        }
+
+        /**
+         * @brief Test that the [][] operator works for Mat4 type matrix
+         * 
+         */
+        void testIndexMat4(){
+            std::cout << "testIndexMat4:\n";
+            
+            // Matrices to add together
+            Mat4 m({
+                {2, 3, 3, 1.5},
+                {5, 6, 6, 2.5},
+                {1, 1, 1, 3.5},
+                {3, 3, 3, 4.5},
+            });
+
+            // Assert that the matrix indexes are as expected
+            std::cout << "\tExpected: " << 1.5 << " : Actual: " << m[0][3] << "\n";
+            CPPUNIT_ASSERT(compareWithEpsilon(1.5, m[0][3]));
+
+            std::cout << "\tExpected: " << 2 << " : Actual: " << m[0][0] << "\n";
+            CPPUNIT_ASSERT(compareWithEpsilon(2, m[0][0]));
+
+            std::cout << "\tExpected: " << 3 << " : Actual: " << m[3][2] << "\n";
+            CPPUNIT_ASSERT(compareWithEpsilon(3, m[3][2]));
+        }
+
+        /**
+         * @brief Test that the [][] operator works for setting values in a Mat4 type matrix
+         * 
+         */
+        void testSetIndexMat4(){
+            std::cout << "testSetIndexMat4:\n";
+            
+            // Matrices to add together
+            Mat4 m({
+                {2, 3, 3, 1.5},
+                {5, 6, 6, 2.5},
+                {1, 1, 1, 3.5},
+                {3, 3, 3, 4.5},
+            });
+
+            m[2][2] = 8.8;
+
+            // Assert that the matrix indexes are as expected
+            std::cout << "\tExpected: " << 8.8 << " : Actual: " << m[2][2] << "\n";
+            CPPUNIT_ASSERT(compareWithEpsilon(8.8, m[2][2]));
+
+        }
+
+        /**
+         * @brief Test that the asArray method works for a Mat4 type matrix
+         * 
+         */
+        void testAsArrayMat4(){
+            std::cout << "testAsArrayMat4:\n";
+            
+            // Expected value
+            float EXPECTED[] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15};
+
+            // Matrices to add together
+            Mat4 m({
+                {0, 1, 2, 3},
+                {4, 5, 6, 7},
+                {8, 9, 10, 11},
+                {12, 13, 14, 15},
+            });
+
+            // Assert that the values match expected
+            std::cout << "\tExpected: {";
+
+            int i = 0;
+            for(i =0; i < 16; i++){
+                std::cout << EXPECTED[i] << ", ";
+            }
+             std::cout << "}\n\tActual: {";
+            for(i =0; i < 16; i++){
+                int xIdx = i / 4;
+                int yIdx = i % 4;
+
+                std::cout << m[xIdx][yIdx] << ", ";
+            }
+            std::cout << "}\n";
+
+            for(i =0; i < 16; i++){
+                int xIdx = i / 4;
+                int yIdx = i % 4;
+
+                CPPUNIT_ASSERT(compareWithEpsilon(EXPECTED[i], m[xIdx][yIdx]));
+
+            }
+        }
+
+        /**
+         * @brief Test that the rotationX function works
+         * 
+         */
+        void testRotationX(){
+            std::cout << "testRotationX:\n";
+
+            // Matrix to compare against
+            Mat4 EXPECT({
+                {1, 0, 0, 0},
+                {0, 0.707107, -0.707107, 0},
+                {0, 0.707107, 0.707107, 0},
+                {0, 0, 0, 1},
+            });
+
+            // Rotation matrix
+            Mat4 m = Mat4::rotationX(45);
+
+
+            // Assert that the result is as expected
+            std::cout << "Expected: \n" << EXPECT << "Actual: \n" << m << "\n";
+            CPPUNIT_ASSERT_EQUAL(EXPECT, m);
+        }
+
+        /**
+         * @brief Test that the rotationY function works
+         * 
+         */
+        void testRotationY(){
+            std::cout << "testRotationY:\n";
+
+            // Matrix to compare against
+            Mat4 EXPECT({
+                {0.707107, 0, 0.707107, 0},
+                {0, 1, 0, 0},
+                {-0.707107, 0, 0.707107, 0},
+                {0, 0, 0, 1},
+            });
+
+            // Rotation matrix
+            Mat4 m = Mat4::rotationY(45);
+
+
+            // Assert that the result is as expected
+            std::cout << "Expected: \n" << EXPECT << "Actual: \n" << m << "\n";
+            CPPUNIT_ASSERT_EQUAL(EXPECT, m);
+        }
+
+        /**
+         * @brief Test that the rotationZ function works
+         * 
+         */
+        void testRotationZ(){
+            std::cout << "testRotationZ:\n";
+
+            // Matrix to compare against
+            Mat4 EXPECT({
+                {0.707107, -0.707107, 0, 0 },
+                {0.707107, 0.707107, 0, 0},
+                {0, 0, 1, 0},
+                {0, 0, 0, 1},
+            });
+
+            // Rotation matrix
+            Mat4 m = Mat4::rotationZ(45);
+
+
+            // Assert that the result is as expected
+            std::cout << "Expected: \n" << EXPECT << "Actual: \n" << m << "\n";
+            CPPUNIT_ASSERT_EQUAL(EXPECT, m);
+        }
+
+        /**
+         * @brief Test that the translation function works
+         * 
+         */
+        void testTranslation(){
+            std::cout << "testTranslation:\n";
+
+            // Matrix to compare against
+            Mat4 EXPECT({
+                {1, 0, 0, 3 },
+                {0, 1, 0, 4},
+                {0, 0, 1, 5},
+                {0, 0, 0, 1},
+            });
+
+            // Rotation matrix
+            Mat4 m = Mat4::translation(3, 4, 5);
+
+
+            // Assert that the result is as expected
+            std::cout << "Expected: \n" << EXPECT << "Actual: \n" << m << "\n";
+            CPPUNIT_ASSERT_EQUAL(EXPECT, m);
+        }
+
+        /**
+         * @brief Test that the scale function works
+         * 
+         */
+        void testScale(){
+            std::cout << "testScale:\n";
+
+            // Matrix to compare against
+            Mat4 EXPECT({
+                {3, 0, 0, 0},
+                {0, 4, 0, 0},
+                {0, 0, 5, 0},
+                {0, 0, 0, 1},
+            });
+
+            // Rotation matrix
+            Mat4 m = Mat4::scale(3, 4, 5);
+
+
+            // Assert that the result is as expected
+            std::cout << "Expected: \n" << EXPECT << "Actual: \n" << m << "\n";
+            CPPUNIT_ASSERT_EQUAL(EXPECT, m);
+        }
+
+        // MAT3 TESTS
+
+        /**
+         * @brief Test that the + operator works for Mat3 type matrices
+         * 
+         */
+        void testAddMat3(){
+            std::cout << "testAddMat3:\n";
+
+            // Matrix to compare against
+            Mat3 EXPECT({
+                {5, 5, 5},
+                {5, 5, 5},
+                {5, 5, 5},
+            });
+
+            // Matrices to add together
+            Mat3 m1({
+                {2, 3, 3},
+                {1.5, 5, 2.4},
+                {1.5, 5, 5},
+            });
+
+            Mat3 m2({
+                {3, 2, 2},
+                {3.5, 0, 2.6},
+                {3.5, 0, 0},
+            });
+
+            Mat3 sumMat = m1 + m2;
+
+            // Assert that the result is as expected
+            std::cout << "Expected: \n" << EXPECT << "Actual: \n" << sumMat << "\n";
+            CPPUNIT_ASSERT_EQUAL(EXPECT, sumMat);
+        }
+
+        /**
+         * @brief Test that the += operator works for Mat3 type matrices
+         * 
+         */
+        void testAddEqualsMat3(){
+            std::cout << "testAddEqualsMat3:\n";
+
+            // Matrix to compare against
+            Mat3 EXPECT({
+                {5, 5, 5},
+                {5, 5, 5},
+                {5, 5, 5},
+            });
+
+            // Matrices to add together
+            Mat3 m1({
+                {2, 3, 3},
+                {1.5, 5, 2.4},
+                {1.5, 5, 5},
+            });
+
+            Mat3 m2({
+                {3, 2, 2},
+                {3.5, 0, 2.6},
+                {3.5, 0, 0},
+            });
+
+           m1 += m2;
+
+            // Assert that the result is as expected
+            std::cout << "Expected: \n" << EXPECT << "Actual: \n" << m1 << "\n";
+            CPPUNIT_ASSERT_EQUAL(EXPECT, m1);
+        }
+
+        /**
+         * @brief Test that the - operator works for Mat3 type matrices
+         * 
+         */
+        void testMinusMat3(){
+            std::cout << "testMinusMat3:\n";
+
+            // Matrix to compare against
+            Mat3 EXPECT({
+                {-1, -1, -1},
+                {-1, -1, -1},
+                {-1, -1, -1},
+            });
+
+            // Matrices to add together
+            Mat3 m1({
+                {2, 3, 3},
+                {1.5, 5, 2.4},
+                {1.5, 5, 5},
+            });
+
+            Mat3 m2({
+                {3, 4, 4},
+                {2.5, 6, 3.4},
+                {2.5, 6, 6},
+            });
+
+            Mat3 diffMat = m1 - m2;
+
+            // Assert that the result is as expected
+            std::cout << "Expected: \n" << EXPECT << "Actual: \n" << diffMat << "\n";
+            CPPUNIT_ASSERT_EQUAL(EXPECT, diffMat);
+        }
+        
+
+        /**
+         * @brief Test that the -= operator works for Mat3 type matrices
+         * 
+         */
+        void testMinusEqualsMat3(){
+            std::cout << "testMinusEqualsMat3:\n";
+
+            // Matrix to compare against
+            Mat3 EXPECT({
+                {-1, -1, -1},
+                {-1, -1, -1},
+                {-1, -1, -1},
+            });
+
+            // Matrices to add together
+            Mat3 m1({
+                {2, 3, 3},
+                {1.5, 5, 2.4},
+                {1.5, 5, 5},
+            });
+
+            Mat3 m2({
+                {3, 4, 4},
+                {2.5, 6, 3.4},
+                {2.5, 6, 6},
+            });
+
+            m1 -= m2;
+
+            // Assert that the result is as expected
+            std::cout << "Expected: \n" << EXPECT << "Actual: \n" << m1 << "\n";
+            CPPUNIT_ASSERT_EQUAL(EXPECT, m1);
+        }
+
+        /**
+         * @brief Test that the *= operator works for a Mat4 and a float
+         * 
+         */
+        void testScaleEqualsMat3(){
+            std::cout << "testScaleEqualsMat3:\n";
+
+            // Matrix to compare against
+            Mat3 EXPECT({
+                {10, 10, 10},
+                {3, 10, 10},
+                {4, 4, 4},
+            });
+
+            // Matrices to add together
+            Mat3 m({
+                {5, 5, 5},
+                {1.5, 5, 5},
+                {2, 2, 2},
+            });
+
+            m *= 2;
+
+            // Assert that the result is as expected
+            std::cout << "Expected: \n" << EXPECT << "Actual: \n" << m << "\n";
+            CPPUNIT_ASSERT_EQUAL(EXPECT, m);
+        }
+
+        /**
+         * @brief Test that the * operator works for a Mat3 and a float
+         * 
+         */
+        void testScaleMat3(){
+            std::cout << "testScaleMat3:\n";
+
+            // Matrix to compare against
+            Mat3 EXPECT({
+                {10, 10, 10},
+                {3, 10, 10},
+                {4, 4, 4},
+            });
+
+            // Matrices to add together
+            Mat3 m({
+                {5, 5, 5},
+                {1.5, 5, 5},
+                {2, 2, 2},
+            });
+
+            Mat3 prod = 2 * m;
+
+            // Assert that the result is as expected
+            std::cout << "Expected: \n" << EXPECT << "Actual: \n" << prod << "\n";
+            CPPUNIT_ASSERT_EQUAL(EXPECT, prod);
+        }
+
+        /**
+         * @brief Test that the * operator works for Mat3 type matrices
+         * 
+         */
+        void testMultMat3(){
+            std::cout << "testMultMat3:\n";
+
+            // Matrix to compare against
+            Mat3 EXPECT({
+                {42, 54.5, 42},
+                {35, 47.5, 43.75},
+                {21, 26, 21},
+            });
+
+            // Matrices to multiply together
+            Mat3 m1({
+                {5, 5, 1.5},
+                {1.5, 5, 5},
+                {2, 2, 2},
+
+            });
+
+            Mat3 m2({
+                {5, 5, 2.5},
+                {2.5, 5, 5},
+                {3, 3, 3},
+            });
+
+            Mat3 prod = m1 * m2;
+
+            // Assert that the result is as expected
+            std::cout << "Expected: \n" << EXPECT << "Actual: \n" << prod << "\n";
+            CPPUNIT_ASSERT_EQUAL(EXPECT, prod);
+        }
+
+        /**
+         * @brief Test that the *= operator works for Mat3 type matrices
+         * 
+         */
+        void testMultEqualsMat3(){
+            std::cout << "testMultEqualsMat3:\n";
+
+            // Matrix to compare against
+            Mat3 EXPECT({
+                {42, 54.5, 42},
+                {35, 47.5, 43.75},
+                {21, 26, 21},
+            });
+
+            // Matrices to multiply together
+            Mat3 m1({
+                {5, 5, 1.5},
+                {1.5, 5, 5},
+                {2, 2, 2},
+
+            });
+
+            Mat3 m2({
+                {5, 5, 2.5},
+                {2.5, 5, 5},
+                {3, 3, 3},
+            });
+
+            m1 *= m2;
+
+            // Assert that the result is as expected
+            std::cout << "Expected: \n" << EXPECT << "Actual: \n" << m1 << "\n";
+            CPPUNIT_ASSERT_EQUAL(EXPECT, m1);
+        }
+
+        /**
+         * @brief Test that the transpose method works for Mat3 type matrices
+         * 
+         */
+        void testTransposeMat3(){
+            std::cout << "testTransposeMat3:\n";
+
+            // Matrix to compare against
+            Mat3 EXPECT({
+                {2, 5, 1},
+                {3, 6, 1},
+                {1.5, 2.5, 3.5},
+            });
+
+            // Matrices to add together
+            Mat3 m({
+                {2, 3, 1.5},
+                {5, 6, 2.5},
+                {1, 1, 3.5},
+            });
+
+            Mat3 res = m.transpose();
+
+            // Assert that the result is as expected
+            std::cout << "Expected: \n" << EXPECT << "Actual: \n" << res << "\n";
+            CPPUNIT_ASSERT_EQUAL(EXPECT, res);
+        }
+
+        /**
+         * @brief Test that the transposeThis method works for Mat3 type matrices
+         * 
+         */
+        void testTransposeThisMat3(){
+            std::cout << "testTransposeThisMat3:\n";
+
+            // Matrix to compare against
+            Mat3 EXPECT({
+                {2, 5, 1},
+                {3, 6, 1},
+                {1.5, 2.5, 3.5},
+            });
+
+            // Matrices to add together
+            Mat3 m({
+                {2, 3, 1.5},
+                {5, 6, 2.5},
+                {1, 1, 3.5},
+            });
+
+            m.transposeThis();
+
+            // Assert that the result is as expected
+            std::cout << "Expected: \n" << EXPECT << "Actual: \n" << m << "\n";
+            CPPUNIT_ASSERT_EQUAL(EXPECT, m);
+        }
+
+        /**
+         * @brief Test that the [][] operator works for Mat3 type matrix
+         * 
+         */
+        void testIndexMat3(){
+            std::cout << "testIndexMat3:\n";
+            
+            // Matrices to add together
+            Mat3 m({
+                {2, 3, 1.5},
+                {5, 6, 2.5},
+                {1, 1, 3.5},
+            });
+
+            // Assert that the matrix indexes are as expected
+            std::cout << "\tExpected: " << 1.5 << " : Actual: " << m[0][2] << "\n";
+            CPPUNIT_ASSERT(compareWithEpsilon(1.5, m[0][2]));
+
+            std::cout << "\tExpected: " << 2 << " : Actual: " << m[0][0] << "\n";
+            CPPUNIT_ASSERT(compareWithEpsilon(2, m[0][0]));
+
+            std::cout << "\tExpected: " << 4 << " : Actual: " << m[1][0] << "\n";
+            CPPUNIT_ASSERT(compareWithEpsilon(5, m[1][0]));
+        }
+
+        /**
+         * @brief Test that the [][] operator works for setting values in a Mat3 type matrix
+         * 
+         */
+        void testSetIndexMat3(){
+            std::cout << "testSetIndexMat3:\n";
+            
+            // Matrices to add together
+            Mat3 m({
+                {2, 3, 3},
+                {5, 6, 6},
+                {1, 1, 1},
+            });
+
+            m[2][2] = 8.8;
+
+            // Assert that the matrix indexes are as expected
+            std::cout << "\tExpected: " << 8.8 << " : Actual: " << m[2][2] << "\n";
+            CPPUNIT_ASSERT(compareWithEpsilon(8.8, m[2][2]));
+
+        }
+
+        /**
+         * @brief Test that the asArray method works for a Mat3 type matrix
+         * 
+         */
+        void testAsArrayMat3(){
+            std::cout << "testAsArrayMat3:\n";
+            
+            // Expected value
+            float EXPECTED[] = {0, 1, 2, 3, 4, 5, 6, 7, 8};
+
+            // Matrices to add together
+            Mat3 m({
+                {0, 1, 2},
+                {3, 4, 5},
+                {6, 7, 8},
+            });
+
+            // Assert that the values match expected
+            std::cout << "\tExpected: {";
+
+            int i = 0;
+            for(i =0; i < 9; i++){
+                std::cout << EXPECTED[i] << ", ";
+            }
+             std::cout << "}\n\tActual: {";
+            for(i =0; i < 9; i++){
+                int xIdx = i / 3;
+                int yIdx = i % 3;
+
+                std::cout << m[xIdx][yIdx] << ", ";
+            }
+            std::cout << "}\n";
+
+            for(i =0; i < 9; i++){
+                int xIdx = i / 3;
+                int yIdx = i % 3;
+
+                CPPUNIT_ASSERT(compareWithEpsilon(EXPECTED[i], m[xIdx][yIdx]));
+
+            }
         }
         
         /**
@@ -739,6 +1677,39 @@ class VecGFXTests : public CppUnit::TestCase{
             testSuite->addTest (new CPPUNIT_NS::TestCaller ("testConstructor", &VecGFXTests::testTransformOperatorVec3));
             testSuite->addTest (new CPPUNIT_NS::TestCaller ("testConstructor", &VecGFXTests::testTransformVec3));
 
+            testSuite->addTest (new CPPUNIT_NS::TestCaller ("testConstructor", &VecGFXTests::testAddMat4));
+            testSuite->addTest (new CPPUNIT_NS::TestCaller ("testConstructor", &VecGFXTests::testAddEqualsMat4));
+            testSuite->addTest (new CPPUNIT_NS::TestCaller ("testConstructor", &VecGFXTests::testMinusMat4));
+            testSuite->addTest (new CPPUNIT_NS::TestCaller ("testConstructor", &VecGFXTests::testMinusEqualsMat4));
+            testSuite->addTest (new CPPUNIT_NS::TestCaller ("testConstructor", &VecGFXTests::testMultMat4));
+            testSuite->addTest (new CPPUNIT_NS::TestCaller ("testConstructor", &VecGFXTests::testMultEqualsMat4));
+            testSuite->addTest (new CPPUNIT_NS::TestCaller ("testConstructor", &VecGFXTests::testScaleMat4));
+            testSuite->addTest (new CPPUNIT_NS::TestCaller ("testConstructor", &VecGFXTests::testScaleEqualsMat4));
+            testSuite->addTest (new CPPUNIT_NS::TestCaller ("testConstructor", &VecGFXTests::testTransposeMat4));
+            testSuite->addTest (new CPPUNIT_NS::TestCaller ("testConstructor", &VecGFXTests::testTransposeThisMat4));
+            testSuite->addTest (new CPPUNIT_NS::TestCaller ("testConstructor", &VecGFXTests::testIndexMat4));
+            testSuite->addTest (new CPPUNIT_NS::TestCaller ("testConstructor", &VecGFXTests::testSetIndexMat4));
+            testSuite->addTest (new CPPUNIT_NS::TestCaller ("testConstructor", &VecGFXTests::testAsArrayMat4));
+
+            testSuite->addTest (new CPPUNIT_NS::TestCaller ("testConstructor", &VecGFXTests::testRotationX));
+            testSuite->addTest (new CPPUNIT_NS::TestCaller ("testConstructor", &VecGFXTests::testRotationY));
+            testSuite->addTest (new CPPUNIT_NS::TestCaller ("testConstructor", &VecGFXTests::testRotationZ));
+            testSuite->addTest (new CPPUNIT_NS::TestCaller ("testConstructor", &VecGFXTests::testTranslation));
+            testSuite->addTest (new CPPUNIT_NS::TestCaller ("testConstructor", &VecGFXTests::testScale));
+
+            testSuite->addTest (new CPPUNIT_NS::TestCaller ("testConstructor", &VecGFXTests::testAddMat3));
+            testSuite->addTest (new CPPUNIT_NS::TestCaller ("testConstructor", &VecGFXTests::testAddEqualsMat3));
+            testSuite->addTest (new CPPUNIT_NS::TestCaller ("testConstructor", &VecGFXTests::testMinusMat3));
+            testSuite->addTest (new CPPUNIT_NS::TestCaller ("testConstructor", &VecGFXTests::testMinusEqualsMat3));
+            testSuite->addTest (new CPPUNIT_NS::TestCaller ("testConstructor", &VecGFXTests::testMultMat3));
+            testSuite->addTest (new CPPUNIT_NS::TestCaller ("testConstructor", &VecGFXTests::testMultEqualsMat3));
+            testSuite->addTest (new CPPUNIT_NS::TestCaller ("testConstructor", &VecGFXTests::testScaleMat3));
+            testSuite->addTest (new CPPUNIT_NS::TestCaller ("testConstructor", &VecGFXTests::testScaleEqualsMat3));
+            testSuite->addTest (new CPPUNIT_NS::TestCaller ("testConstructor", &VecGFXTests::testTransposeMat3));
+            testSuite->addTest (new CPPUNIT_NS::TestCaller ("testConstructor", &VecGFXTests::testTransposeThisMat3));
+            testSuite->addTest (new CPPUNIT_NS::TestCaller ("testConstructor", &VecGFXTests::testIndexMat3));
+            testSuite->addTest (new CPPUNIT_NS::TestCaller ("testConstructor", &VecGFXTests::testSetIndexMat3));
+            testSuite->addTest (new CPPUNIT_NS::TestCaller ("testConstructor", &VecGFXTests::testAsArrayMat3));
 
             return testSuite;
         }
