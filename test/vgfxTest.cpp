@@ -677,7 +677,34 @@ class VecGFXTests : public CppUnit::TestCase{
             CPPUNIT_ASSERT_EQUAL(EXPECT, v);
         }
         
+        /**
+         * @brief Test that the + operator works for Mat4 type matrices
+         * 
+         */
+        void testAddMat4(){
+            // Matrix to compare against
+            Mat4 EXPECT({
+                {5, 5, 5, 5},
+                {5, 5, 5, 5},
+                {5, 5, 5, 5},
+                {5, 5, 5, 5},
+            });
 
+            // Matrices to add together
+            Mat4 m1({
+                {2, 3, 3, 2},
+                {1.5, 5, 2.4, 5},
+                {1.5, 5, 5, 4},
+                {2, 3, 3, 2},
+            });
+
+            Mat4 m2({
+                {3, 2, 2, 3},
+                {4.5, 0, 2.6, 0},
+                {4.5, 0, 0, 1},
+                {2, 3, 3, 2},
+            });
+        }
         
         /**
          * @brief Build and return the a Test Suit consisting of all this classes tests

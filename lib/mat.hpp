@@ -174,6 +174,17 @@ namespace VecGFX{
             Mat4 operator*=(const Mat4& m);
 
             /**
+             * @brief == Override. Compare two matrices and return true if 
+             * all of their components are the same.
+             * 
+             * @param m The matrix to compare this Mat4 to.
+             * @return bool holding the truth value 
+             * true: The two matrices are equal
+             * false: The two matrices are not equal
+             */
+            bool operator==(const Mat4& m) const;
+
+            /**
              * @brief Find and return the transpose of this Matrix.
              * 
              * @return The transpose of this Matrix
@@ -213,6 +224,64 @@ namespace VecGFX{
              * @return Matrix as an array
              */
             float* asArray();
+
+            /**
+             * @brief Create a 3D transformation matrix for a rotation 30 degrees around
+             * the x axis.
+             * 
+             * @param theta Number of degrees to rotate around the x axis
+             * 
+             * @return 3D transformation matrix for a rotation 30 degrees around
+             * the x axis.
+             */
+            static Mat4 rotationX(float theta);
+
+             /**
+             * @brief Create a 3D transformation matrix for a rotation 30 degrees around
+             * the y axis.
+             * 
+             * @param theta Number of degrees to rotate around the y axis
+             * 
+             * @return 3D transformation matrix for a rotation 30 degrees around
+             * the y axis.
+             */
+            static Mat4 rotationY(float theta);
+
+            /**
+             * @brief Create a 3D transformation matrix for a rotation 30 degrees around
+             * the z axis.
+             * 
+             * @param theta Number of degrees to rotate around the z axis
+             * 
+             * @return 3D transformation matrix for a rotation 30 degrees around
+             * the z axis.
+             */
+            static Mat4 rotationZ(float theta);
+
+            /**
+             * @brief Create a 3D transformation matrix for a translation with the given 
+             * x, y, and z amounts.
+             * 
+             * @param xShift Amount to translate in the x direction
+             * @param yShift Amount to translate in the y direction
+             * @param zShift Amount to translate in the z direction
+             * 
+             * @return 3D transformation matrix for a translation. 
+             */
+            static Mat4 translation(float xShift, float yShift, float zShift);
+
+            /**
+             * @brief Create a 3D transformation matrix for scaling with the given 
+             * x, y, and z scaling factors.
+             * 
+             * @param xFactor Amount to scale in the x direction
+             * @param yFactor Amount to scale in the y direction
+             * @param zFactor Amount to scale in the z direction
+             * 
+             * @return 3D transformation matrix for scaling 
+             */
+            static Mat4 scale(float xFactor, float yFactor, float zFactor);
+
 
         private:
             float backingArr[16];
@@ -386,6 +455,17 @@ namespace VecGFX{
              * @return This Mat3 scaled by the value s
              */
             Mat3 operator*=(const float& m);
+
+             /**
+             * @brief == Override. Compare two matrices and return true if 
+             * all of their components are the same.
+             * 
+             * @param m The matrix to compare this Mat4 to.
+             * @return bool holding the truth value 
+             * true: The two matrices are equal
+             * false: The two matrices are not equal
+             */
+            bool operator==(const Mat3& m) const;
 
             /**
              * @brief * Override. Multiply this matrix by m in that order.

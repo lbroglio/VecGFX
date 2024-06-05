@@ -116,6 +116,20 @@ namespace VecGFX{
         return (*this = *this * m);
     }
 
+    bool Mat4::operator==(const Mat4& m) const{
+
+        // Compare this Matrix to m component wise.
+        for(int i =0; i < 16; i++){
+            if(this->backingArr[i] != m.backingArr[i]){
+                return false;
+            }
+        }
+
+        // If this is reached the matrices are equivalent
+        return true;
+    }
+
+
     Mat4 Mat4::transpose() const {
         // Matrix to store the product
         Mat4 ret = Mat4();
@@ -302,6 +316,20 @@ namespace VecGFX{
 
     Mat3 Mat3::operator*=(const Mat3& m){
         return (*this = *this * m);
+    }
+
+    
+    bool Mat3::operator==(const Mat3& m) const{
+
+        // Compare this Matrix to m component wise.
+        for(int i =0; i < 9; i++){
+            if(this->backingArr[i] != m.backingArr[i]){
+                return false;
+            }
+        }
+
+        // If this is reached the matrices are equivalent
+        return true;
     }
 
     Mat3 Mat3::transpose() const {
