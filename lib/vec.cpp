@@ -82,7 +82,6 @@ namespace VecGFX{
         for(int row=0; row < 4; row++){
             float indexVal = 0;
             for(int i=0; i < 4; i++){
-                int offset = (row * 4) + i;
                 indexVal += (m[row][i] * v.backingArr[i]);
             }
             ret.backingArr[row] = indexVal;
@@ -185,7 +184,6 @@ namespace VecGFX{
         for(int row=0; row < 3; row++){
             float indexVal = 0;
             for(int i=0; i < 3; i++){
-                int offset = (row * 3) + i;
                 indexVal += (m[row][i] * v.backingArr[i]);
             }
             ret.backingArr[row] = indexVal;

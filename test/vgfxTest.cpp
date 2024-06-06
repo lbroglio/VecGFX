@@ -7,7 +7,7 @@
 #include <cppunit/TestResult.h>
 #include <cppunit/TestResultCollector.h>
 
-#include "../lib/vgfx.hpp"
+#include "../lib/VecGFX.hpp"
 #include "../lib/util.hpp"
 
 

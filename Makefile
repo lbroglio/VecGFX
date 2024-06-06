@@ -1,17 +1,30 @@
-test: vec.o mat.o test.o util.o
-	g++ bin/vec.o bin/mat.o bin/test.o bin/util.o -o bin/test -lcppunit
+CC= g++
+LIBNAME= vecgfx
+FLAGS= -Wall -Werror -fPIC
+OBJECTS= bin/vec.o bin/mat.o bin/util.o
+TEST_OBJECTS = bin/vgfxTest.o
+VERSION= 0.1.0
 
-util.o: bin lib/util.cpp lib/util.hpp
-		g++ lib/util.cpp -o bin/util.o -c 
+.PHONY: clean
 
-test.o: bin test/vgfxTest.cpp
-	g++ test/vgfxTest.cpp -o bin/test.o -c 
+install: dist
+	sudo cp bin/lib$(LIBNAME).so /usr/lib/aarch64-linux-gnu/lib$(LIBNAME).so
+	if [ ! -d "/usr/include/$(LIBNAME)" ]; then \
+		sudo mkdir /usr/include/$(LIBNAME); fi; \
+	for file in lib/*.hpp; do \
+		sudo cp $$file /usr/include/$(LIBNAME)/$${file##*/}; done\
 
-vec.o: bin lib/vec.cpp lib/vec.hpp
-	g++ lib/vec.cpp -o bin/vec.o -c
+dist: $(OBJECTS)
+	$(CC) $^  -shared -Wl,-soname,lib$(LIBNAME).so -o bin/lib$(LIBNAME).so
 
-mat.o: bin lib/mat.cpp lib/mat.hpp
-	g++ lib/mat.cpp -o bin/mat.o -c
+test: $(OBJECTS) $(TEST_OBJECTS)
+	$(CC) $(FLAGS) $(OBJECTS) $(TEST_OBJECTS) -o bin/test -lcppunit
+
+$(OBJECTS): bin/%.o : lib/%.cpp bin
+	$(CC) $(FLAGS) -c $< $(LIB_PATH) $(LIBS) -o $@
+
+$(TEST_OBJECTS): bin/%.o : test/%.cpp bin
+	$(CC) $(FLAGS) -c $< $(LIB_PATH) $(LIBS) -o $@
 
 bin: 
 	mkdir bin
