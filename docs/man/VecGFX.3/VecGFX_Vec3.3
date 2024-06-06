@@ -1,0 +1,433 @@
+.TH "VecGFX::Vec3" 3 "Wed Jun 5 2024" "VecGFX" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+VecGFX::Vec3 \- Class holding a 3D Vector\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <vec\&.hpp>\fP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBVec3\fP (float \fBx\fP, float \fBy\fP, float \fBz\fP)"
+.br
+.RI "Construct a new \fBVec3\fP object with a given x, y, and zcomponents\&. "
+.ti -1c
+.RI "\fBVec3\fP ()"
+.br
+.RI "Construct a new \fBVec4\fP object -- Default constructor; sets all components to zero\&. "
+.ti -1c
+.RI "\fBVec3\fP (const \fBVec3\fP &f)"
+.br
+.RI "Copy Constructor\&. Create a new \fBVec3\fP from another\&. "
+.ti -1c
+.RI "float \fBdot\fP (const \fBVec3\fP &v)"
+.br
+.RI "Calculate the dot product of this Vector with another\&. "
+.ti -1c
+.RI "\fBVec3\fP \fBoperator+\fP (const \fBVec3\fP &v) const"
+.br
+.RI "Add operator override\&. Add together this Vector and v component wise (x1 + x2 \&.\&.\&. ) "
+.ti -1c
+.RI "\fBVec3\fP \fBoperator+=\fP (const \fBVec3\fP &v)"
+.br
+.RI "+= override\&. Add together this Vector and v component wise (x1 +x2 \&.\&.\&. ) and set this Vector to the sum "
+.ti -1c
+.RI "\fBVec3\fP \fBoperator\-\fP (const \fBVec3\fP &v) const"
+.br
+.RI "-operator override\&. Subtract v from this Vector component wise (x1 - x2 \&.\&.\&. ) "
+.ti -1c
+.RI "\fBVec3\fP \fBoperator\-=\fP (const \fBVec3\fP &v)"
+.br
+.RI "-= override\&. Subtract v from this Vector component wise (x1 - x2 \&.\&.\&. ) and set this Vector to the difference "
+.ti -1c
+.RI "\fBVec3\fP \fBoperator*\fP (const float &s) const"
+.br
+.RI "*operator override\&. Perform scalar multiplication on this \fBVec4\fP "
+.ti -1c
+.RI "\fBVec3\fP \fBoperator*=\fP (const float &s)"
+.br
+.RI "*= override\&. Perform scalar multiplication on this Vector and set it to the result "
+.ti -1c
+.RI "\fBVec3\fP \fBoperator*\fP (const \fBVec3\fP &v) const"
+.br
+.RI "*operator override\&. Find the cross product of this \fBVec3\fP with another\&. Ordered as this * m "
+.ti -1c
+.RI "\fBVec3\fP \fBoperator*=\fP (const \fBVec3\fP &v)"
+.br
+.RI "*= override\&. Find the cross product of this \fBVec3\fP with another\&. Ordered as this * m\&. Then set this \fBVec3\fP to the result\&. "
+.ti -1c
+.RI "bool \fBoperator==\fP (const \fBVec3\fP &v) const"
+.br
+.RI "== override\&. Compare two Vectors and return true if all of their components are the same\&. "
+.ti -1c
+.RI "bool \fBoperator!=\fP (const \fBVec3\fP &v)"
+.br
+.RI "!= override\&. Compare two Vectors and return true if they aren't equal\&. "
+.ti -1c
+.RI "\fBVec3\fP \fBoperator=\fP (const \fBVec3\fP &v)"
+.br
+.RI "= Override\&. Set the elements of this \fBVec3\fP equal to another\&. "
+.ti -1c
+.RI "float \fBmagitude\fP ()"
+.br
+.RI "Calculate and return the magnitude of this Vector\&. "
+.ti -1c
+.RI "\fBVec3\fP \fBtransform\fP (const \fBMat3\fP &m)"
+.br
+.RI "Transform this \fBVec4\fP by multiplying it by a \fBMat4\fP\&. Equivalent to setting this \fBVec4\fP equal to m * *this\&. "
+.in -1c
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "float & \fBx\fP = backingArr[0]"
+.br
+.RI "x component of this Vector "
+.ti -1c
+.RI "float & \fBy\fP = backingArr[1]"
+.br
+.RI "y component of this Vector "
+.ti -1c
+.RI "float & \fBz\fP = backingArr[2]"
+.br
+.RI "z component of this Vector "
+.in -1c
+.SS "Friends"
+
+.in +1c
+.ti -1c
+.RI "\fBVec3\fP \fBoperator*\fP (const float &s, const \fBVec3\fP &v)"
+.br
+.RI "*operator override\&. Perform scalar multiplication on this \fBVec3\fP "
+.ti -1c
+.RI "\fBVec3\fP \fBoperator*\fP (const \fBMat3\fP &m, const \fBVec3\fP &v)"
+.br
+.RI "
+.IP "\(bu" 2
+Ovveride\&. Mutliply a \fBVec3\fP by a given \fBMat3\fP 
+.PP
+"
+.ti -1c
+.RI "std::ostream & \fBoperator<<\fP (std::ostream &o, const \fBVec3\fP &v)"
+.br
+.RI "Create a string representation of a \fBVec3\fP and pass it into an output stream\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+Class holding a 3D Vector\&. 
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "VecGFX::Vec3::Vec3 (float x, float y, float z)\fC [inline]\fP"
+
+.PP
+Construct a new \fBVec3\fP object with a given x, y, and zcomponents\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIx\fP x component of the \fBVec3\fP to create 
+.br
+\fIy\fP y component of the \fBVec3\fP to create 
+.br
+\fIz\fP z component of the \fBVec3\fP to create 
+.RE
+.PP
+
+.SS "VecGFX::Vec3::Vec3 (const \fBVec3\fP & f)\fC [inline]\fP"
+
+.PP
+Copy Constructor\&. Create a new \fBVec3\fP from another\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIf\fP \fBVec3\fP to initialize this one from 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "float VecGFX::Vec3::dot (const \fBVec3\fP & v)"
+
+.PP
+Calculate the dot product of this Vector with another\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIv\fP The Vector to take the dot product with 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+The dot product of this Vector and v 
+.RE
+.PP
+
+.SS "float VecGFX::Vec3::magitude ()"
+
+.PP
+Calculate and return the magnitude of this Vector\&. 
+.PP
+\fBReturns\fP
+.RS 4
+Magnitude of this Vector 
+.RE
+.PP
+
+.SS "bool VecGFX::Vec3::operator!= (const \fBVec3\fP & v)"
+
+.PP
+!= override\&. Compare two Vectors and return true if they aren't equal\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIv\fP Vector to compare to this one
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+bool holding the truth value true: The two Vectors are not equal false: The two Vectors are equal 
+.RE
+.PP
+
+.SS "\fBVec3\fP VecGFX::Vec3::operator* (const float & s) const"
+
+.PP
+*operator override\&. Perform scalar multiplication on this \fBVec4\fP 
+.PP
+\fBParameters\fP
+.RS 4
+\fIs\fP Scalar to multiply the elements of this Vector by 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+New Vector created after scaling 
+.RE
+.PP
+
+.SS "\fBVec3\fP VecGFX::Vec3::operator* (const \fBVec3\fP & v) const"
+
+.PP
+*operator override\&. Find the cross product of this \fBVec3\fP with another\&. Ordered as this * m 
+.PP
+\fBParameters\fP
+.RS 4
+\fIv\fP The \fBVec3\fP to cross with this one\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+New \fBVec3\fP created by the cross product 
+.RE
+.PP
+
+.SS "\fBVec3\fP VecGFX::Vec3::operator*= (const float & s)"
+
+.PP
+*= override\&. Perform scalar multiplication on this Vector and set it to the result 
+.PP
+\fBParameters\fP
+.RS 4
+\fIs\fP Scalar to multiply the elements of this Vector by 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+This Vector after the operation 
+.RE
+.PP
+
+.SS "\fBVec3\fP VecGFX::Vec3::operator*= (const \fBVec3\fP & v)"
+
+.PP
+*= override\&. Find the cross product of this \fBVec3\fP with another\&. Ordered as this * m\&. Then set this \fBVec3\fP to the result\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIv\fP The \fBVec3\fP to cross with this one\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+This Vector after the operation 
+.RE
+.PP
+
+.SS "\fBVec3\fP VecGFX::Vec3::operator+ (const \fBVec3\fP & v) const"
+
+.PP
+Add operator override\&. Add together this Vector and v component wise (x1 + x2 \&.\&.\&. ) 
+.PP
+\fBParameters\fP
+.RS 4
+\fIv\fP Vector to add to this one 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+New Vector with the sum 
+.RE
+.PP
+
+.SS "\fBVec3\fP VecGFX::Vec3::operator+= (const \fBVec3\fP & v)"
+
+.PP
++= override\&. Add together this Vector and v component wise (x1 +x2 \&.\&.\&. ) and set this Vector to the sum 
+.PP
+\fBParameters\fP
+.RS 4
+\fIv\fP Vector to add to this one 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+This Vector after the add operation 
+.RE
+.PP
+
+.SS "\fBVec3\fP VecGFX::Vec3::operator\- (const \fBVec3\fP & v) const"
+
+.PP
+-operator override\&. Subtract v from this Vector component wise (x1 - x2 \&.\&.\&. ) 
+.PP
+\fBParameters\fP
+.RS 4
+\fIv\fP Vector to subtract from this one 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+New Vector created from adding these together 
+.RE
+.PP
+
+.SS "\fBVec3\fP VecGFX::Vec3::operator\-= (const \fBVec3\fP & v)"
+
+.PP
+-= override\&. Subtract v from this Vector component wise (x1 - x2 \&.\&.\&. ) and set this Vector to the difference 
+.PP
+\fBParameters\fP
+.RS 4
+\fIv\fP Vector to subtract from this one 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+This Vector after the operation 
+.RE
+.PP
+
+.SS "\fBVec3\fP VecGFX::Vec3::operator= (const \fBVec3\fP & v)"
+
+.PP
+= Override\&. Set the elements of this \fBVec3\fP equal to another\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIv\fP Vec3to set the elements of this one too 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+This \fBVec3\fP after its values are set 
+.RE
+.PP
+
+.SS "bool VecGFX::Vec3::operator== (const \fBVec3\fP & v) const"
+
+.PP
+== override\&. Compare two Vectors and return true if all of their components are the same\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIv\fP Vector to compare to this one
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+bool holding the truth value true: The two Vectors are equal false: The two Vectors are not equal 
+.RE
+.PP
+
+.SS "\fBVec3\fP VecGFX::Vec3::transform (const \fBMat3\fP & m)"
+
+.PP
+Transform this \fBVec4\fP by multiplying it by a \fBMat4\fP\&. Equivalent to setting this \fBVec4\fP equal to m * *this\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIm\fP Matrix to transform this \fBVec4\fP with 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+This \fBVec4\fP after the operation 
+.RE
+.PP
+
+.SH "Friends And Related Function Documentation"
+.PP 
+.SS "\fBVec3\fP operator* (const float & s, const \fBVec3\fP & v)\fC [friend]\fP"
+
+.PP
+*operator override\&. Perform scalar multiplication on this \fBVec3\fP 
+.PP
+\fBParameters\fP
+.RS 4
+\fIs\fP Scalar to multiply the elements of this Vector by 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+New Vector created after scaling 
+.RE
+.PP
+
+.SS "\fBVec3\fP operator* (const \fBMat3\fP & m, const \fBVec3\fP & v)\fC [friend]\fP"
+
+.PP
+
+.IP "\(bu" 2
+Ovveride\&. Mutliply a \fBVec3\fP by a given \fBMat3\fP 
+.PP
+
+.PP
+\fBParameters\fP
+.RS 4
+\fIm\fP \fBMat3\fP to multiply the \fBVec3\fP by\&. 
+.br
+\fIv\fP \fBVec3\fP to multiply with the \fBMat3\fP 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+Product of the \fBMat3\fP and the \fBVec3\fP 
+.RE
+.PP
+
+.SS "std::ostream & operator<< (std::ostream & o, const \fBVec3\fP & v)\fC [friend]\fP"
+
+.PP
+Create a string representation of a \fBVec3\fP and pass it into an output stream\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIo\fP output stream to print to 
+.br
+\fIv\fP \fBVec3\fP to print a string representation of 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+The output string after the \fBVec3\fP's representation is printed 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for VecGFX from the source code\&.

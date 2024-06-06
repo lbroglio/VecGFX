@@ -1,0 +1,549 @@
+.TH "VecGFX::Mat4" 3 "Wed Jun 5 2024" "VecGFX" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+VecGFX::Mat4 \- Class holding a 4x4 Matrix\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <mat\&.hpp>\fP
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "class \fBCMRow\fP"
+.br
+.RI "A class holding a row from a const \fBMat4\fP class\&. "
+.ti -1c
+.RI "class \fBMRow\fP"
+.br
+.RI "A class holding a row from a \fBMat4\fP class\&. "
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBMat4\fP (std::initializer_list< std::initializer_list< float > > initList)"
+.br
+.RI "Construct a new \fBMat4\fP object with the given contents\&. Contents should be provided as a list of 4, 4 entry long rows\&. With the top row in the 0 index, the second to the top row in the 1 index \&.\&.\&. "
+.ti -1c
+.RI "\fBMat4\fP ()"
+.br
+.RI "Construct a new Mat 4 object\&. -- Default Constructor will be the identity Matrix\&. "
+.ti -1c
+.RI "\fBMat4\fP (const \fBMat4\fP &m)"
+.br
+.RI "Copy constructor create a new \fBMat4\fP with the same entries as another\&. "
+.ti -1c
+.RI "\fBMat4\fP \fBoperator+\fP (const \fBMat4\fP &m) const"
+.br
+.RI "Add Override\&. Add this \fBMat4\fP and m together and return the sum\&. "
+.ti -1c
+.RI "\fBMat4\fP \fBoperator+=\fP (const \fBMat4\fP &m)"
+.br
+.RI "+= Override\&. Add this \fBMat4\fP and m together and set this matrix to the sum "
+.ti -1c
+.RI "\fBMat4\fP \fBoperator\-\fP (const \fBMat4\fP &m) const"
+.br
+.RI "-operator Override\&. Subtract m from this \fBMat4\fP and return the difference\&. "
+.ti -1c
+.RI "\fBMat4\fP \fBoperator\-=\fP (const \fBMat4\fP &m)"
+.br
+.RI "-= Override\&. Subtract m from this \fBMat4\fP and set this matrix to the result\&. "
+.ti -1c
+.RI "\fBMat4\fP \fBoperator*\fP (const float &s) const"
+.br
+.RI "
+.IP "\(bu" 2
+override\&. Multiply this matrix by a scalar value 
+.PP
+"
+.ti -1c
+.RI "\fBMat4\fP \fBoperator*=\fP (const float &m)"
+.br
+.RI "
+.IP "\(bu" 2
+override\&.Multiply this matrix by a scalar value and set this Matrix to the result\&. 
+.PP
+"
+.ti -1c
+.RI "\fBMat4\fP \fBoperator*\fP (const \fBMat4\fP &m) const"
+.br
+.RI "
+.IP "\(bu" 2
+override\&. Multiply this matrix by m in that order\&. 
+.PP
+"
+.ti -1c
+.RI "\fBMat4\fP \fBoperator*=\fP (const \fBMat4\fP &m)"
+.br
+.RI "
+.IP "\(bu" 2
+override\&. Multiply this matrix by m in that order and set this Matrix to the result\&. 
+.PP
+"
+.ti -1c
+.RI "bool \fBoperator==\fP (const \fBMat4\fP &m) const"
+.br
+.RI "== Override\&. Compare two matrices and return true if all of their components are the same\&. "
+.ti -1c
+.RI "\fBMat4\fP \fBtranspose\fP () const"
+.br
+.RI "Find and return the transpose of this Matrix\&. "
+.ti -1c
+.RI "\fBMat4\fP \fBtransposeThis\fP ()"
+.br
+.RI "Find the tranpose of this Matrix set it to the result and then return it\&. 
+.br
+ "
+.ti -1c
+.RI "\fBMRow\fP \fBoperator[]\fP (int idx)"
+.br
+.RI "Index into this Matrix to get the contents of the row at the given index\&. "
+.ti -1c
+.RI "\fBCMRow\fP const \fBoperator[]\fP (int idx) const"
+.br
+.RI "Index into this Matrix to get the contents of the row at the given index\&. "
+.ti -1c
+.RI "float * \fBasArray\fP ()"
+.br
+.RI "Return the \fBMat4\fP as a standard array\&. Index for each element can be calculated with (row * 4) + column 
+.br
+ Allocates space for the array\&. "
+.in -1c
+.SS "Static Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "static \fBMat4\fP \fBrotationX\fP (float theta)"
+.br
+.RI "Create a 3D transformation matrix for a rotation 30 degrees around the x axis\&. "
+.ti -1c
+.RI "static \fBMat4\fP \fBrotationY\fP (float theta)"
+.br
+.RI "Create a 3D transformation matrix for a rotation 30 degrees around the y axis\&. "
+.ti -1c
+.RI "static \fBMat4\fP \fBrotationZ\fP (float theta)"
+.br
+.RI "Create a 3D transformation matrix for a rotation 30 degrees around the z axis\&. "
+.ti -1c
+.RI "static \fBMat4\fP \fBtranslation\fP (float xShift, float yShift, float zShift)"
+.br
+.RI "Create a 3D transformation matrix for a translation with the given x, y, and z amounts\&. "
+.ti -1c
+.RI "static \fBMat4\fP \fBscale\fP (float xFactor, float yFactor, float zFactor)"
+.br
+.RI "Create a 3D transformation matrix for scaling with the given x, y, and z scaling factors\&. "
+.in -1c
+.SS "Friends"
+
+.in +1c
+.ti -1c
+.RI "\fBMat4\fP \fBoperator*\fP (const float &s, const \fBMat4\fP &m)"
+.br
+.RI "
+.IP "\(bu" 2
+override\&. Perform scalar multiplication on this \fBVec3\fP 
+.PP
+"
+.ti -1c
+.RI "std::ostream & \fBoperator<<\fP (std::ostream &o, const \fBMat4\fP &m)"
+.br
+.RI "Create a string representation of a \fBMat4\fP and pass it into an output stream\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+Class holding a 4x4 Matrix\&. 
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "VecGFX::Mat4::Mat4 (std::initializer_list< std::initializer_list< float > > initList)"
+
+.PP
+Construct a new \fBMat4\fP object with the given contents\&. Contents should be provided as a list of 4, 4 entry long rows\&. With the top row in the 0 index, the second to the top row in the 1 index \&.\&.\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIinitList\fP Two dimension list containing the contents of the Matrix 
+.RE
+.PP
+
+.SS "VecGFX::Mat4::Mat4 (const \fBMat4\fP & m)"
+
+.PP
+Copy constructor create a new \fBMat4\fP with the same entries as another\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIm\fP The Matrix to copy to create a new one 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "float * VecGFX::Mat4::asArray ()"
+
+.PP
+Return the \fBMat4\fP as a standard array\&. Index for each element can be calculated with (row * 4) + column 
+.br
+ Allocates space for the array\&. 
+.PP
+\fBReturns\fP
+.RS 4
+Matrix as an array 
+.RE
+.PP
+
+.SS "\fBMat4\fP VecGFX::Mat4::operator* (const float & s) const"
+
+.PP
+
+.IP "\(bu" 2
+override\&. Multiply this matrix by a scalar value 
+.PP
+
+.PP
+\fBParameters\fP
+.RS 4
+\fIs\fP The scalar to multiply this mat4 by\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+This \fBMat4\fP scaled by the value s 
+.RE
+.PP
+
+.SS "\fBMat4\fP VecGFX::Mat4::operator* (const \fBMat4\fP & m) const"
+
+.PP
+
+.IP "\(bu" 2
+override\&. Multiply this matrix by m in that order\&. 
+.PP
+
+.PP
+\fBParameters\fP
+.RS 4
+\fIm\fP The matrix to multiply this mat4 by\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+The product of this mat4 and m 
+.RE
+.PP
+
+.SS "\fBMat4\fP VecGFX::Mat4::operator*= (const float & m)"
+
+.PP
+
+.IP "\(bu" 2
+override\&.Multiply this matrix by a scalar value and set this Matrix to the result\&. 
+.PP
+
+.PP
+\fBParameters\fP
+.RS 4
+\fIs\fP The scalar to multiply this mat4 by\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+This \fBMat4\fP scaled by the value s 
+.RE
+.PP
+
+.SS "\fBMat4\fP VecGFX::Mat4::operator*= (const \fBMat4\fP & m)"
+
+.PP
+
+.IP "\(bu" 2
+override\&. Multiply this matrix by m in that order and set this Matrix to the result\&. 
+.PP
+
+.PP
+\fBParameters\fP
+.RS 4
+\fIm\fP The matrix to multiply this \fBMat4\fP by\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+The product of this \fBMat4\fP and m 
+.RE
+.PP
+
+.SS "\fBMat4\fP VecGFX::Mat4::operator+ (const \fBMat4\fP & m) const"
+
+.PP
+Add Override\&. Add this \fBMat4\fP and m together and return the sum\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIm\fP The matrix to add to this one 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+The sum of this Matrix and m 
+.RE
+.PP
+
+.SS "\fBMat4\fP VecGFX::Mat4::operator+= (const \fBMat4\fP & m)"
+
+.PP
++= Override\&. Add this \fBMat4\fP and m together and set this matrix to the sum 
+.PP
+\fBParameters\fP
+.RS 4
+\fIm\fP The matrix to add to this one 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+The sum of this Matrix and m 
+.RE
+.PP
+
+.SS "\fBMat4\fP VecGFX::Mat4::operator\- (const \fBMat4\fP & m) const"
+
+.PP
+-operator Override\&. Subtract m from this \fBMat4\fP and return the difference\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIm\fP The matrix to subtract from this mat4 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+The difference of this matrix and m 
+.RE
+.PP
+
+.SS "\fBMat4\fP VecGFX::Mat4::operator\-= (const \fBMat4\fP & m)"
+
+.PP
+-= Override\&. Subtract m from this \fBMat4\fP and set this matrix to the result\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIm\fP The matrix to subtract from this mat4 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+The difference of this matrix and m 
+.RE
+.PP
+
+.SS "bool VecGFX::Mat4::operator== (const \fBMat4\fP & m) const"
+
+.PP
+== Override\&. Compare two matrices and return true if all of their components are the same\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIm\fP The matrix to compare this \fBMat4\fP to\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+bool holding the truth value true: The two matrices are equal false: The two matrices are not equal 
+.RE
+.PP
+
+.SS "\fBMat4::MRow\fP VecGFX::Mat4::operator[] (int idx)"
+
+.PP
+Index into this Matrix to get the contents of the row at the given index\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIidx\fP The row of the matrix to retrieve the contents of 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+\fBMRow\fP holding the corresponding row 
+.br
+ 
+.RE
+.PP
+
+.SS "\fBMat4::CMRow\fP const VecGFX::Mat4::operator[] (int idx) const"
+
+.PP
+Index into this Matrix to get the contents of the row at the given index\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIidx\fP The row of the matrix to retrieve the contents of 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+\fBMRow\fP holding the corresponding row 
+.br
+ 
+.RE
+.PP
+
+.SS "\fBMat4\fP VecGFX::Mat4::rotationX (float theta)\fC [static]\fP"
+
+.PP
+Create a 3D transformation matrix for a rotation 30 degrees around the x axis\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fItheta\fP Number of degrees to rotate around the x axis
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+3D transformation matrix for a rotation 30 degrees around the x axis\&. 
+.RE
+.PP
+
+.SS "\fBMat4\fP VecGFX::Mat4::rotationY (float theta)\fC [static]\fP"
+
+.PP
+Create a 3D transformation matrix for a rotation 30 degrees around the y axis\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fItheta\fP Number of degrees to rotate around the y axis
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+3D transformation matrix for a rotation 30 degrees around the y axis\&. 
+.RE
+.PP
+
+.SS "\fBMat4\fP VecGFX::Mat4::rotationZ (float theta)\fC [static]\fP"
+
+.PP
+Create a 3D transformation matrix for a rotation 30 degrees around the z axis\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fItheta\fP Number of degrees to rotate around the z axis
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+3D transformation matrix for a rotation 30 degrees around the z axis\&. 
+.RE
+.PP
+
+.SS "\fBMat4\fP VecGFX::Mat4::scale (float xFactor, float yFactor, float zFactor)\fC [static]\fP"
+
+.PP
+Create a 3D transformation matrix for scaling with the given x, y, and z scaling factors\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIxFactor\fP Amount to scale in the x direction 
+.br
+\fIyFactor\fP Amount to scale in the y direction 
+.br
+\fIzFactor\fP Amount to scale in the z direction
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+3D transformation matrix for scaling 
+.RE
+.PP
+
+.SS "\fBMat4\fP VecGFX::Mat4::translation (float xShift, float yShift, float zShift)\fC [static]\fP"
+
+.PP
+Create a 3D transformation matrix for a translation with the given x, y, and z amounts\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIxShift\fP Amount to translate in the x direction 
+.br
+\fIyShift\fP Amount to translate in the y direction 
+.br
+\fIzShift\fP Amount to translate in the z direction
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+3D transformation matrix for a translation\&. 
+.RE
+.PP
+
+.SS "\fBMat4\fP VecGFX::Mat4::transpose () const"
+
+.PP
+Find and return the transpose of this Matrix\&. 
+.PP
+\fBReturns\fP
+.RS 4
+The transpose of this Matrix 
+.RE
+.PP
+
+.SS "\fBMat4\fP VecGFX::Mat4::transposeThis ()"
+
+.PP
+Find the tranpose of this Matrix set it to the result and then return it\&. 
+.br
+ 
+.PP
+\fBReturns\fP
+.RS 4
+The tranpose of this matrix 
+.RE
+.PP
+
+.SH "Friends And Related Function Documentation"
+.PP 
+.SS "\fBMat4\fP operator* (const float & s, const \fBMat4\fP & m)\fC [friend]\fP"
+
+.PP
+
+.IP "\(bu" 2
+override\&. Perform scalar multiplication on this \fBVec3\fP 
+.PP
+
+.PP
+\fBParameters\fP
+.RS 4
+\fIs\fP Scalar to multiply the elements of this Vector by 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+New Vector created after scaling 
+.RE
+.PP
+
+.SS "std::ostream & operator<< (std::ostream & o, const \fBMat4\fP & m)\fC [friend]\fP"
+
+.PP
+Create a string representation of a \fBMat4\fP and pass it into an output stream\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIo\fP output stream to print to 
+.br
+\fIv\fP \fBMat4\fP to print a string representation of 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+The output string after the \fBMat4\fP's representation is printed 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for VecGFX from the source code\&.

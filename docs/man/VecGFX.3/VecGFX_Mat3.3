@@ -1,0 +1,437 @@
+.TH "VecGFX::Mat3" 3 "Wed Jun 5 2024" "VecGFX" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+VecGFX::Mat3 \- Class holding a 3x3 Matrix\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <mat\&.hpp>\fP
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "class \fBCMRow\fP"
+.br
+.RI "A class holding a row from a const \fBMat3\fP class\&. "
+.ti -1c
+.RI "class \fBMRow\fP"
+.br
+.RI "A class holding a row from a \fBMat3\fP class\&. "
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBMat3\fP (std::initializer_list< std::initializer_list< float > > initList)"
+.br
+.RI "Construct a new \fBMat3\fP object with the given contents\&. Contents should be provided as a list of 3, 3 entry long rows\&. With the top row in the 0 index, the second to the top row in the 1 index \&.\&.\&. "
+.ti -1c
+.RI "\fBMat3\fP ()"
+.br
+.RI "Construct a new \fBMat3\fP object\&. -- Default Constructor will be the identity Matrix\&. "
+.ti -1c
+.RI "\fBMat3\fP (const \fBMat3\fP &m)"
+.br
+.RI "Copy constructor create a new \fBMat4\fP with the same entries as another\&. "
+.ti -1c
+.RI "\fBMat3\fP \fBoperator+\fP (const \fBMat3\fP &m) const"
+.br
+.RI "+operator override\&. Add this \fBMat3\fP and m together and return the sum "
+.ti -1c
+.RI "\fBMat3\fP \fBoperator+=\fP (const \fBMat3\fP &m)"
+.br
+.RI "+= Override\&. Add this \fBMat3\fP and m together and set this matrix to the sum "
+.ti -1c
+.RI "\fBMat3\fP \fBoperator\-\fP (const \fBMat3\fP &m) const"
+.br
+.RI "-operator override\&. Subtract m from this \fBMat3\fP and return the difference\&. "
+.ti -1c
+.RI "\fBMat3\fP \fBoperator\-=\fP (const \fBMat3\fP &m)"
+.br
+.RI "-= Override\&. Subtract m from this \fBMat3\fP and set this matrix to the result\&. "
+.ti -1c
+.RI "\fBMat3\fP \fBoperator*\fP (const float &s) const"
+.br
+.RI "
+.IP "\(bu" 2
+override\&. Multiply this matrix by a scalar value 
+.PP
+"
+.ti -1c
+.RI "\fBMat3\fP \fBoperator*=\fP (const float &m)"
+.br
+.RI "
+.IP "\(bu" 2
+override\&.Multiply this matrix by a scalar value and set this Matrix to the result\&. 
+.PP
+"
+.ti -1c
+.RI "bool \fBoperator==\fP (const \fBMat3\fP &m) const"
+.br
+.RI "== Override\&. Compare two matrices and return true if all of their components are the same\&. "
+.ti -1c
+.RI "\fBMat3\fP \fBoperator*\fP (const \fBMat3\fP &m) const"
+.br
+.RI "
+.IP "\(bu" 2
+override\&. Multiply this matrix by m in that order\&. 
+.PP
+"
+.ti -1c
+.RI "\fBMat3\fP \fBoperator*=\fP (const \fBMat3\fP &m)"
+.br
+.RI "
+.IP "\(bu" 2
+override\&. Multiply this matrix by m in that order and set this Matrix to the result\&. 
+.PP
+"
+.ti -1c
+.RI "\fBMat3\fP \fBtranspose\fP () const"
+.br
+.RI "Find and return the transpose of this Matrix\&. "
+.ti -1c
+.RI "\fBMat3\fP \fBtransposeThis\fP ()"
+.br
+.RI "Find the tranpose of this Matrix set it to the result and then return it\&. 
+.br
+ "
+.ti -1c
+.RI "\fBMRow\fP \fBoperator[]\fP (int idx)"
+.br
+.RI "Index into this Matrix to get the contents of the row at the given index\&. "
+.ti -1c
+.RI "\fBCMRow\fP const \fBoperator[]\fP (int idx) const"
+.br
+.RI "Index into this Matrix to get the contents of the row at the given index\&. "
+.ti -1c
+.RI "float * \fBasArray\fP ()"
+.br
+.RI "Return the \fBMat3\fP as a standard array\&. Index for each element can be calculated with (row * 3) + column 
+.br
+ Allocates space for the array\&. "
+.in -1c
+.SS "Friends"
+
+.in +1c
+.ti -1c
+.RI "\fBMat3\fP \fBoperator*\fP (const float &s, const \fBMat3\fP &m)"
+.br
+.RI "
+.IP "\(bu" 2
+override\&. Perform scalar multiplication on this \fBVec3\fP 
+.PP
+"
+.ti -1c
+.RI "std::ostream & \fBoperator<<\fP (std::ostream &o, const \fBMat3\fP &m)"
+.br
+.RI "Create a string representation of a \fBMat3\fP and pass it into an output stream\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+Class holding a 3x3 Matrix\&. 
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "VecGFX::Mat3::Mat3 (std::initializer_list< std::initializer_list< float > > initList)"
+
+.PP
+Construct a new \fBMat3\fP object with the given contents\&. Contents should be provided as a list of 3, 3 entry long rows\&. With the top row in the 0 index, the second to the top row in the 1 index \&.\&.\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIinitList\fP Two dimension list containing the contents of the Matrix 
+.RE
+.PP
+
+.SS "VecGFX::Mat3::Mat3 (const \fBMat3\fP & m)"
+
+.PP
+Copy constructor create a new \fBMat4\fP with the same entries as another\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIm\fP The Matrix to copy to create a new one 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "float * VecGFX::Mat3::asArray ()"
+
+.PP
+Return the \fBMat3\fP as a standard array\&. Index for each element can be calculated with (row * 3) + column 
+.br
+ Allocates space for the array\&. 
+.PP
+\fBReturns\fP
+.RS 4
+Matrix as an array 
+.RE
+.PP
+
+.SS "\fBMat3\fP VecGFX::Mat3::operator* (const float & s) const"
+
+.PP
+
+.IP "\(bu" 2
+override\&. Multiply this matrix by a scalar value 
+.PP
+
+.PP
+\fBParameters\fP
+.RS 4
+\fIs\fP The scalar to multiply this \fBMat3\fP by\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+This \fBMat3\fP scaled by the value s 
+.RE
+.PP
+
+.SS "\fBMat3\fP VecGFX::Mat3::operator* (const \fBMat3\fP & m) const"
+
+.PP
+
+.IP "\(bu" 2
+override\&. Multiply this matrix by m in that order\&. 
+.PP
+
+.PP
+\fBParameters\fP
+.RS 4
+\fIm\fP The matrix to multiply this \fBMat3\fP by\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+The product of this \fBMat3\fP and m 
+.RE
+.PP
+
+.SS "\fBMat3\fP VecGFX::Mat3::operator*= (const float & m)"
+
+.PP
+
+.IP "\(bu" 2
+override\&.Multiply this matrix by a scalar value and set this Matrix to the result\&. 
+.PP
+
+.PP
+\fBParameters\fP
+.RS 4
+\fIs\fP The scalar to multiply this \fBMat3\fP by\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+This \fBMat3\fP scaled by the value s 
+.RE
+.PP
+
+.SS "\fBMat3\fP VecGFX::Mat3::operator*= (const \fBMat3\fP & m)"
+
+.PP
+
+.IP "\(bu" 2
+override\&. Multiply this matrix by m in that order and set this Matrix to the result\&. 
+.PP
+
+.PP
+\fBParameters\fP
+.RS 4
+\fIm\fP The matrix to multiply this \fBMat3\fP by\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+The product of this \fBMat3\fP and m 
+.RE
+.PP
+
+.SS "\fBMat3\fP VecGFX::Mat3::operator+ (const \fBMat3\fP & m) const"
+
+.PP
++operator override\&. Add this \fBMat3\fP and m together and return the sum 
+.PP
+\fBParameters\fP
+.RS 4
+\fIm\fP The matrix to add to this one 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+The sum of this Matrix and m 
+.RE
+.PP
+
+.SS "\fBMat3\fP VecGFX::Mat3::operator+= (const \fBMat3\fP & m)"
+
+.PP
++= Override\&. Add this \fBMat3\fP and m together and set this matrix to the sum 
+.PP
+\fBParameters\fP
+.RS 4
+\fIm\fP The matrix to add to this one 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+The sum of this Matrix and m 
+.RE
+.PP
+
+.SS "\fBMat3\fP VecGFX::Mat3::operator\- (const \fBMat3\fP & m) const"
+
+.PP
+-operator override\&. Subtract m from this \fBMat3\fP and return the difference\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIm\fP The matrix to subtract from this \fBMat3\fP 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+The difference of this matrix and m 
+.RE
+.PP
+
+.SS "\fBMat3\fP VecGFX::Mat3::operator\-= (const \fBMat3\fP & m)"
+
+.PP
+-= Override\&. Subtract m from this \fBMat3\fP and set this matrix to the result\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIm\fP The matrix to subtract from this \fBMat3\fP 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+The difference of this matrix and m 
+.RE
+.PP
+
+.SS "bool VecGFX::Mat3::operator== (const \fBMat3\fP & m) const"
+
+.PP
+== Override\&. Compare two matrices and return true if all of their components are the same\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIm\fP The matrix to compare this \fBMat4\fP to\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+bool holding the truth value true: The two matrices are equal false: The two matrices are not equal 
+.RE
+.PP
+
+.SS "\fBMat3::MRow\fP VecGFX::Mat3::operator[] (int idx)"
+
+.PP
+Index into this Matrix to get the contents of the row at the given index\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIidx\fP The row of the matrix to retrieve the contents of 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+\fBMRow\fP holding the corresponding row 
+.br
+ 
+.RE
+.PP
+
+.SS "\fBMat3::CMRow\fP const VecGFX::Mat3::operator[] (int idx) const"
+
+.PP
+Index into this Matrix to get the contents of the row at the given index\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIidx\fP The row of the matrix to retrieve the contents of 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+\fBMRow\fP holding the corresponding row 
+.br
+ 
+.RE
+.PP
+
+.SS "\fBMat3\fP VecGFX::Mat3::transpose () const"
+
+.PP
+Find and return the transpose of this Matrix\&. 
+.PP
+\fBReturns\fP
+.RS 4
+The transpose of this Matrix 
+.RE
+.PP
+
+.SS "\fBMat3\fP VecGFX::Mat3::transposeThis ()"
+
+.PP
+Find the tranpose of this Matrix set it to the result and then return it\&. 
+.br
+ 
+.PP
+\fBReturns\fP
+.RS 4
+The tranpose of this matrix 
+.RE
+.PP
+
+.SH "Friends And Related Function Documentation"
+.PP 
+.SS "\fBMat3\fP operator* (const float & s, const \fBMat3\fP & m)\fC [friend]\fP"
+
+.PP
+
+.IP "\(bu" 2
+override\&. Perform scalar multiplication on this \fBVec3\fP 
+.PP
+
+.PP
+\fBParameters\fP
+.RS 4
+\fIs\fP Scalar to multiply the elements of this Vector by 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+New Vector created after scaling 
+.RE
+.PP
+
+.SS "std::ostream & operator<< (std::ostream & o, const \fBMat3\fP & m)\fC [friend]\fP"
+
+.PP
+Create a string representation of a \fBMat3\fP and pass it into an output stream\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIo\fP output stream to print to 
+.br
+\fIv\fP \fBMat3\fP to print a string representation of 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+The output string after the \fBMat3\fP's representation is printed 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for VecGFX from the source code\&.

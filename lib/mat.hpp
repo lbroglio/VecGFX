@@ -124,7 +124,7 @@ namespace VecGFX{
             Mat4 operator+=(const Mat4& m);
 
             /**
-             * @brief - Override. Subtract m from this Mat4 and return the difference.
+             * @brief -operator Override. Subtract m from this Mat4 and return the difference.
              * 
              * @param m The matrix to subtract from this mat4
              * @return The difference of this matrix and m
@@ -141,7 +141,7 @@ namespace VecGFX{
 
 
             /**
-             * @brief * Override. Multiply this matrix by a scalar value
+             * @brief * override. Multiply this matrix by a scalar value
              * 
              * @param s The scalar to multiply this mat4 by.
              * @return This Mat4 scaled by the value s
@@ -149,7 +149,7 @@ namespace VecGFX{
             Mat4 operator*(const float& s) const;
 
             /**
-             * @brief * Override.Multiply this matrix by a scalar value 
+             * @brief * override.Multiply this matrix by a scalar value 
              * and set this Matrix to the result.
              * 
              * @param  s The scalar to multiply this mat4 by.
@@ -158,7 +158,7 @@ namespace VecGFX{
             Mat4 operator*=(const float& m);
 
             /**
-             * @brief * Override. Multiply this matrix by m in that order.
+             * @brief * override. Multiply this matrix by m in that order.
              * 
              * @param m The matrix to multiply this mat4 by.
              * @return The product of this mat4 and m
@@ -166,7 +166,7 @@ namespace VecGFX{
             Mat4 operator*(const Mat4& m) const;
 
             /**
-             * @brief * Override. Multiply this matrix by m in that order and set this Matrix to the result.
+             * @brief * override. Multiply this matrix by m in that order and set this Matrix to the result.
              * 
              * @param m The matrix to multiply this Mat4 by.
              * @return The product of this Mat4 and m
@@ -407,7 +407,7 @@ namespace VecGFX{
             Mat3(const Mat3& m);
 
             /**
-             * @brief Add Override. Add this Mat3 and m together and return the sum
+             * @brief +operator override. Add this Mat3 and m together and return the sum
              * 
              * @param m The matrix to add to this one
              * @return The sum of this Matrix and m
@@ -423,7 +423,7 @@ namespace VecGFX{
             Mat3 operator+=(const Mat3& m);
 
             /**
-             * @brief - Override. Subtract m from this Mat3 and return the difference.
+             * @brief -operator override. Subtract m from this Mat3 and return the difference.
              * 
              * @param m The matrix to subtract from this Mat3
              * @return The difference of this matrix and m
@@ -440,7 +440,7 @@ namespace VecGFX{
 
 
             /**
-             * @brief * Override. Multiply this matrix by a scalar value
+             * @brief * override. Multiply this matrix by a scalar value
              * 
              * @param s The scalar to multiply this Mat3 by.
              * @return This Mat3 scaled by the value s
@@ -448,7 +448,7 @@ namespace VecGFX{
             Mat3 operator*(const float& s) const;
 
             /**
-             * @brief * Override.Multiply this matrix by a scalar value 
+             * @brief * override.Multiply this matrix by a scalar value 
              * and set this Matrix to the result.
              * 
              * @param  s The scalar to multiply this Mat3 by.
@@ -468,7 +468,7 @@ namespace VecGFX{
             bool operator==(const Mat3& m) const;
 
             /**
-             * @brief * Override. Multiply this matrix by m in that order.
+             * @brief * override. Multiply this matrix by m in that order.
              * 
              * @param m The matrix to multiply this Mat3 by.
              * @return The product of this Mat3 and m
@@ -476,7 +476,7 @@ namespace VecGFX{
             Mat3 operator*(const Mat3& m) const;
 
             /**
-             * @brief * Override. Multiply this matrix by m in that order and set this Matrix to the result.
+             * @brief * override. Multiply this matrix by m in that order and set this Matrix to the result.
              * 
              * @param m The matrix to multiply this Mat3 by.
              * @return The product of this Mat3 and m

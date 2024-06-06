@@ -18,3 +18,11 @@ bin:
 
 clean:
 	rm -rf bin 
+
+docu:
+	rm -rf docs
+	doxygen config/docConfig
+	for file in docs/man/VecGFX.3/* ; do \
+        gzip -k $$file; \
+		sudo cp $$file.gz /usr/share/man/man3; \
+		rm $$file.gz; done \

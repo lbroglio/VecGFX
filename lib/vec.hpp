@@ -79,7 +79,7 @@ namespace VecGFX{
             Vec4 operator+=(const Vec4& v);
 
             /**
-             * @brief - override. Subtract v from this Vector component wise (x1 - x2 ... )
+             * @brief -operator override. Subtract v from this Vector component wise (x1 - x2 ... )
              * 
              * @param v Vector to subtract from this one
              * @return New Vector created from adding these together
@@ -96,7 +96,7 @@ namespace VecGFX{
             Vec4 operator-=(const Vec4& v);
 
             /**
-             * @brief * override. Perform scalar multiplication on this Vec4
+             * @brief *operator override. Perform scalar multiplication on this Vec4
              * 
              * @param s Scalar to multiply the elements of this Vector by
              * @return New Vector created after scaling
@@ -165,7 +165,7 @@ namespace VecGFX{
             float backingArr[4];
 
         /**
-         * @brief * override. Perform scalar multiplication on this Vec4
+         * @brief *operator override. Perform scalar multiplication on this Vec4
          * 
          * @param s Scalar to multiply the elements of this Vector by
          * @return New Vector created after scaling
@@ -173,7 +173,7 @@ namespace VecGFX{
         friend Vec4 operator*(const float& s, const Vec4& v);
 
         /**
-         * @brief * Ovveride. Mutliply a Vec4 by a given Mat4
+         * @brief *operator override. Mutliply a Vec4 by a given Mat4
          * 
          * @param m Mat4 to multiply the Vec4 by.
          * @param v Vec4 to multiply with the Mat4
@@ -244,7 +244,7 @@ namespace VecGFX{
             float dot(const Vec3& v);
 
             /**
-             * @brief + operator override. Add together this Vector and v component wise (x1 + x2 ... )
+             * @brief Add operator override. Add together this Vector and v component wise (x1 + x2 ... )
              * 
              * @param v Vector to add to this one
              * @return New Vector with the sum 
@@ -261,7 +261,7 @@ namespace VecGFX{
             Vec3 operator+=(const Vec3& v);
 
             /**
-             * @brief - override. Subtract v from this Vector component wise (x1 - x2 ... )
+             * @brief -operator override. Subtract v from this Vector component wise (x1 - x2 ... )
              * 
              * @param v Vector to subtract from this one
              * @return New Vector created from adding these together
@@ -278,7 +278,7 @@ namespace VecGFX{
             Vec3 operator-=(const Vec3& v);
 
             /**
-             * @brief * override. Perform scalar multiplication on this Vec4
+             * @brief *operator override. Perform scalar multiplication on this Vec4
              * 
              * @param s Scalar to multiply the elements of this Vector by
              * @return New Vector created after scaling
@@ -295,7 +295,7 @@ namespace VecGFX{
             Vec3 operator*=(const float& s);
 
             /**
-             * @brief * override. Find the cross product of this Vec3 with another.
+             * @brief *operator override. Find the cross product of this Vec3 with another.
              * Ordered as this * m
              * 
              * @param v The Vec3 to cross with this one.
@@ -365,7 +365,7 @@ namespace VecGFX{
             float backingArr[3];
 
         /**
-         * @brief * override. Perform scalar multiplication on this Vec3
+         * @brief *operator override. Perform scalar multiplication on this Vec3
          * 
          * @param s Scalar to multiply the elements of this Vector by
          * @return New Vector created after scaling
@@ -373,7 +373,7 @@ namespace VecGFX{
         friend Vec3 operator*(const float& s, const Vec3& v);
 
         /**
-         * @brief * Ovveride. Mutliply a Vec3 by a given Mat3
+         * @brief \* Ovveride. Mutliply a Vec3 by a given Mat3
          * 
          * @param m Mat3 to multiply the Vec3 by.
          * @param v Vec3 to multiply with the Mat3
