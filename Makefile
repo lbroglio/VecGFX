@@ -16,7 +16,7 @@ install: bin/lib$(LIBNAME).so installDocu
 	for file in lib/*.hpp; do \
 		sudo cp $$file /usr/include/$(LIBNAME)/$${file##*/}; done\
 
-installDocu: docu
+installDocu:
 	for file in docs/man/VecGFX.3/* ; do \
         gzip -k $$file; \
 		sudo cp $$file.gz /usr/share/man/man3; \
