@@ -5,16 +5,24 @@ OBJECTS= bin/vec.o bin/mat.o bin/util.o
 TEST_OBJECTS = bin/vgfxTest.o
 VERSION= 0.1.0
 
-.PHONY: clean
+.PHONY: clean docu dist installDocu
 
-install: dist
+dist: bin/lib$(LIBNAME).so
+
+install: bin/lib$(LIBNAME).so installDocu
 	sudo cp bin/lib$(LIBNAME).so /usr/lib/aarch64-linux-gnu/lib$(LIBNAME).so
 	if [ ! -d "/usr/include/$(LIBNAME)" ]; then \
 		sudo mkdir /usr/include/$(LIBNAME); fi; \
 	for file in lib/*.hpp; do \
 		sudo cp $$file /usr/include/$(LIBNAME)/$${file##*/}; done\
 
-dist: $(OBJECTS)
+installDocu: docu
+	for file in docs/man/VecGFX.3/* ; do \
+        gzip -k $$file; \
+		sudo cp $$file.gz /usr/share/man/man3; \
+		rm $$file.gz; done \
+
+bin/lib$(LIBNAME).so: $(OBJECTS)
 	$(CC) $^  -shared -Wl,-soname,lib$(LIBNAME).so -o bin/lib$(LIBNAME).so
 
 test: $(OBJECTS) $(TEST_OBJECTS)
@@ -35,7 +43,3 @@ clean:
 docu:
 	rm -rf docs
 	doxygen config/docConfig
-	for file in docs/man/VecGFX.3/* ; do \
-        gzip -k $$file; \
-		sudo cp $$file.gz /usr/share/man/man3; \
-		rm $$file.gz; done \
