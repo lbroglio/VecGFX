@@ -69,6 +69,19 @@ namespace VecGFX{
         return sqrt((x * x) + (y * y) + (z * z) + (w * w));
     }
 
+    float* Vec4::asArray() const{
+        // Create array copy of this Vector's components
+        float* arrayRep = new float[4];
+        arrayRep[0] = this->x;
+        arrayRep[1] = this->y;
+        arrayRep[2] = this->z;
+        arrayRep[3] = this->w;
+
+        // Return the array rep
+        return arrayRep;
+        
+    }
+
 
     Vec4 operator*(const float& s, const Vec4& v){
         return Vec4(v.x * s, v.y * s, v.z * s, v.w * s);
@@ -170,6 +183,18 @@ namespace VecGFX{
 
     Vec3 Vec3::transform(const Mat3& m){
         return (*this = m * *this);
+    }
+
+    float* Vec3::asArray() const{
+        // Create array copy of this Vector's components
+        float* arrayRep = new float[3];
+        arrayRep[0] = this->x;
+        arrayRep[1] = this->y;
+        arrayRep[2] = this->z;
+
+        // Return the array rep
+        return arrayRep;
+        
     }
 
     Vec3 operator*(const float& s, const Vec3& v){

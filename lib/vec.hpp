@@ -158,6 +158,15 @@ namespace VecGFX{
              * @return This Vec4 after the operation
              */
             Vec4 transform(const Mat4& m);
+
+            /**
+             * @brief Return an array represnetation of this Vector in the 
+             * form {x, y, z} \n
+             * Memory is allocated for the array with new
+             * 
+             * @return Array representation of this Vector
+             */
+            float* asArray() const;
         private:
             /**
              * @brief Array which stores the values of this Vec3
@@ -358,6 +367,15 @@ namespace VecGFX{
              * @return This Vec4 after the operation
              */
             Vec3 transform(const Mat3& m);
+
+            /**
+             * @brief Return an array represnetation of this Vector in the 
+             * form {x, y, z} \n
+             * Memory is allocated for the array with new
+             * 
+             * @return Array representation of this Vector
+             */
+            float* asArray() const;
         private:
             /**
              * @brief Array which stores the values of this Vec3

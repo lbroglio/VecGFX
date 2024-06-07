@@ -80,6 +80,12 @@ VecGFX::Vec3 \- Class holding a 3D Vector\&.
 .RI "\fBVec3\fP \fBtransform\fP (const \fBMat3\fP &m)"
 .br
 .RI "Transform this \fBVec4\fP by multiplying it by a \fBMat4\fP\&. Equivalent to setting this \fBVec4\fP equal to m * *this\&. "
+.ti -1c
+.RI "float * \fBasArray\fP () const"
+.br
+.RI "Return an array represnetation of this Vector in the form {x, y, z} 
+.br
+Memory is allocated for the array with new\&. "
 .in -1c
 .SS "Public Attributes"
 
@@ -150,6 +156,19 @@ Copy Constructor\&. Create a new \fBVec3\fP from another\&.
 
 .SH "Member Function Documentation"
 .PP 
+.SS "float * VecGFX::Vec3::asArray () const"
+
+.PP
+Return an array represnetation of this Vector in the form {x, y, z} 
+.br
+Memory is allocated for the array with new\&. 
+.PP
+\fBReturns\fP
+.RS 4
+Array representation of this Vector 
+.RE
+.PP
+
 .SS "float VecGFX::Vec3::dot (const \fBVec3\fP & v)"
 
 .PP
